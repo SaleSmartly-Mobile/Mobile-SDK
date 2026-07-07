@@ -4,7 +4,7 @@
 
 ## Demo APK 下载
 
-[点击下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Demo/SaleSmartly_LiveChat_Mobile_SDK/main/android/apk/salesmartly-chat-android-demo-v1.0.0.apk)
+[点击下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/android/apk/salesmartly-chat-android-demo-v1.0.0.apk)
 
 APK 信息：
 
@@ -22,7 +22,7 @@ Android 设备下载后如提示禁止安装未知来源应用，请在系统设
 
 ## SDK AAR 下载
 
-[点击下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Demo/SaleSmartly_LiveChat_Mobile_SDK/main/android/sdk/salesmartly-chatwidget-sdk-v0.1.0.aar)
+[点击下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/android/sdk/salesmartly-chatwidget-sdk-v0.1.0.aar)
 
 AAR 信息：
 
