@@ -16,7 +16,7 @@ APK 信息：
 | versionCode | `1` |
 | minSdk | `23` |
 | 构建类型 | `debug` |
-| SHA-256 | `7e2a9490497cf8e356e58b55411797d29512202718bec2bf08bcddc9b1c18070` |
+| SHA-256 | `97acf68d13ab9dcc578d97448bb69a551c76d847fe7c76935d67c969c811b6dd` |
 
 Android 设备下载后如提示禁止安装未知来源应用，请在系统设置中允许当前浏览器或文件管理器安装 APK。
 
@@ -32,8 +32,8 @@ AAR 信息：
 | Maven 坐标 | `com.salesmartly:chatwidget-sdk:0.1.0` |
 | minSdk | `23` |
 | 构建类型 | `release` |
-| 文件大小 | `1500493` bytes |
-| SHA-256 | `a774daac42592a84d9ff8aad5e491f0d11abd94add72fa3407de261465f84cf3` |
+| 文件大小 | `1503046` bytes |
+| SHA-256 | `b5f825c3981f74cc2d05388337babb113236098a6eee484311bca476252b9874` |
 
 ## 1. 添加 SDK 依赖
 
