@@ -4,13 +4,13 @@
 
 ## Demo APK 下载
 
-[点击下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/android/apk/salesmartly-chat-android-demo-v1.0.0.apk)
+[点击下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
 
 APK 信息：
 
 | 字段 | 值 |
 | --- | --- |
-| 文件 | `android/apk/salesmartly-chat-android-demo-v1.0.0.apk` |
+| 文件 | `android/demo/salesmartly-chat-android-demo-v1.0.0.apk` |
 | applicationId | `com.salesmartly.chatwidget.sample` |
 | versionName | `1.0.0` |
 | versionCode | `1` |
