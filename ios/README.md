@@ -1,6 +1,12 @@
 # SaleSmartly Chat iOS SDK
 
-该目录只存放 SaleSmartly Chat iOS SDK 二进制发布包，不提交 SDK 源码。
+该目录存放 SaleSmartly Chat iOS SDK 二进制发布包和 Demo 示例工程，不提交 SDK 源码。
+
+## Demo 源码
+
+[查看 Demo 源码](demo/demo-source)
+
+Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v0.1.0.zip` 引入 SDK 二进制包。
 
 ## SDK ZIP 下载
 
@@ -17,8 +23,8 @@ SDK 信息：
 | 最低系统 | iOS 15.0 |
 | 构建类型 | release |
 | Xcode | 26.6 (17F113) |
-| 文件大小 | `3692911` bytes |
-| SHA-256 | `f8809e6e9c9ee8e242874721664e99a27829bae721447ee9671a0874b8b85fa8` |
+| 文件大小 | `5286291` bytes |
+| SHA-256 | `737cee9c6ab8d13bd1f12df609cb840d2a807b4c60500c78f92f9e718c542f01` |
 
 ## 接入方式
 
