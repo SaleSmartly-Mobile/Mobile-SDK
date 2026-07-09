@@ -28,6 +28,15 @@ SDK 信息：
 
 ## 接入方式
 
+### Swift Package Manager
+
+1. 在 Xcode 中打开 `File > Add Package Dependencies...`。
+2. 输入仓库地址 `https://github.com/SaleSmartly-Mobile/Mobile-SDK`。
+3. 选择版本 `0.1.0`，并添加 `SalesmartlyChat` product。
+4. 在 Swift 文件中 `import SalesmartlyChat` 后接入公开 API。
+
+### 手动集成 ZIP
+
 1. 下载并解压 `salesmartly-chat-ios-sdk-v0.1.0.zip`。
 2. 将 `SalesmartlyChat.xcframework` 添加到宿主 App Target。
 3. 在 `Frameworks, Libraries, and Embedded Content` 中设置为 `Embed & Sign`。

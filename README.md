@@ -14,12 +14,14 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 ## iOS
 
 - [iOS 接入说明](ios/README.md)
+- SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
 - [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/ios/sdk/salesmartly-chat-ios-sdk-v0.1.0.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
 
 ## 目录结构
 
 ```text
+Package.swift
 android/
   README.md
   demo/
