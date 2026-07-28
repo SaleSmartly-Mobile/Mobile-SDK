@@ -137,12 +137,19 @@ SalesmartlyChat.initialize(
 
 ## 4. 挂载聊天 UI
 
+SDK 不会渲染悬浮按钮、外部渠道按钮、未读预览或侧边栏等聊天窗口外部入口。
+宿主 App 需要提供自己的入口按钮，并在收到 `onReady` 后调用 `SalesmartlyChat.openChat()` 打开聊天窗口。
+该调整只影响聊天窗口外部入口；窗口内部的主页与顶部栏渠道入口仍按项目配置显示。
+
 ### Compose 页面
 
 ```kotlin
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.salesmartly.chatwidget.api.SalesmartlyChat
 import com.salesmartly.chatwidget.ui.SalesmartlyChatHost
@@ -150,6 +157,14 @@ import com.salesmartly.chatwidget.ui.SalesmartlyChatHost
 @Composable
 fun AppScreen(sdkReady: Boolean) {
     Box(modifier = Modifier.fillMaxSize()) {
+        Button(
+            onClick = SalesmartlyChat::openChat,
+            enabled = sdkReady,
+            modifier = Modifier.align(Alignment.Center),
+        ) {
+            Text("打开聊天")
+        }
+
         if (sdkReady) {
             SalesmartlyChatHost(
                 runtime = SalesmartlyChat.runtime(),
@@ -198,6 +213,8 @@ SalesmartlyChat.initialize(
     scriptUrl = BuildConfig.SALESMARTLY_SCRIPT_URL,
 )
 ```
+
+View 宿主同样需要提供自己的入口按钮，并在按钮点击监听中调用 `SalesmartlyChat.openChat()`。
 
 ## 5. 设置用户信息
 
