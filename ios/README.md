@@ -9,6 +9,8 @@
 - [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/ios/sdk/salesmartly-chat-ios-sdk-v0.1.2.zip)
 - [查看 Demo 源码](demo/demo-source)
 
+> **入口说明：** SDK 不提供默认外部入口、悬浮按钮或 Launcher。宿主必须自行实现聊天按钮，并在按钮点击事件中调用 `SalesmartlyChat.openChat()` 打开聊天。
+
 `0.1.2` 调整原生 Host 的展示边界：关闭态不再渲染 SDK Launcher，宿主通过 `SalesmartlyChat.openChat()` 打开窗口，打开后的聊天 UI 铺满 Host 可用区域；同时修复 SwiftUI/UIKit 关闭状态同步，扩大 Header 操作按钮触控区，并让帮助中心、留资/离线引导、推广卡邮箱与评分校验、消息摘要和未读预览的默认文案跟随当前语言。
 
 > 从 `0.1.1` 升级时，如此前依赖 `SalesmartlyChatHost` 自带 Launcher，需要改为宿主自行提供入口并调用 `SalesmartlyChat.openChat()`。
@@ -93,9 +95,15 @@ func startSalesmartlyChat() async throws {
 
 ## 挂载聊天 UI
 
+SDK 只负责展示打开后的聊天 UI，不会自动生成外部入口。接入时需要由宿主完成以下操作：
+
+1. 在宿主页面中实现自定义聊天按钮。
+2. 在按钮点击事件中调用 `SalesmartlyChat.openChat()`。
+3. SwiftUI 工程挂载 `SalesmartlyChatHost`，UIKit 工程展示 `SalesmartlyChatViewController`。
+
 ### SwiftUI
 
-宿主自行提供聊天入口并调用 `SalesmartlyChat.openChat()`，同时将 `SalesmartlyChatHost` 放到需要承载打开后聊天窗口的视图层：
+下面的 `Button` 是宿主自定义按钮；点击后通过 `SalesmartlyChat.openChat()` 打开聊天，同时由 `SalesmartlyChatHost` 承载聊天窗口：
 
 ```swift
 import SalesmartlyChat
@@ -116,7 +124,7 @@ struct ChatLayer: View {
 
 ### UIKit
 
-UIKit 工程可以直接展示 SDK 提供的容器控制器：
+将以下逻辑放到宿主自定义按钮的点击事件中，通过 API 打开聊天并展示 SDK 容器控制器：
 
 ```swift
 SalesmartlyChat.openChat()
@@ -207,4 +215,4 @@ SalesmartlyChat.push("onReceiveMessage") { payload in
 
 [查看 Demo 源码](demo/demo-source)
 
-Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v0.1.2.zip` 引入 SDK 二进制包，可作为 SwiftPM 本地二进制集成参考。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
+Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v0.1.2.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
