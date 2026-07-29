@@ -56,7 +56,7 @@ struct SalesmartlyChatSampleApp: App {
         )
     }
 
-    /// 对齐 Web SDK 真实宿主页默认只露出插件 Launcher；Android sample 操作区保留为调试入口，通过环境变量显式打开。
+    /// 对齐 Android sample 的调试操作区开关；默认页面只保留宿主打开窗口按钮，环境变量开启后展示完整操作区。
     private static var showsSampleControls: Bool {
         ProcessInfo.processInfo.environment["SALESMARTLY_SHOW_SAMPLE_CONTROLS"] == "1"
     }
@@ -79,6 +79,12 @@ struct SalesmartlyChatSampleApp: App {
                 if Self.showsSampleControls {
                     sampleControls
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                } else {
+                    Button("Open chat") {
+                        SalesmartlyChat.openChat()
+                    }
+                    .padding(16)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 }
 
                 if sdkReady {
@@ -169,7 +175,7 @@ struct SalesmartlyChatSampleApp: App {
         }
     }
 
-    /// 对齐 Web SDK 截图中的宿主页面，sample 默认使用纯白画布承载右下角 Launcher。
+    /// 对齐 Web SDK 截图中的宿主页面，sample 默认使用纯白画布承载宿主打开按钮与聊天窗口。
     private var sampleBackgroundColor: Color {
         Color.white
     }
