@@ -6,7 +6,7 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## 合规说明
 
-- [Android / iOS 原生 SDK 合规配置与申报指南](docs/native-sdk-compliance-guide.md)
+- [Android / iOS 原生 SDK 合规配置指引](docs/native-sdk-compliance-guide.md)
 
 ## Android
 
