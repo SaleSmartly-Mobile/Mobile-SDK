@@ -4,6 +4,10 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 当前已提供 Android SDK 文件、Demo APK、iOS SDK 二进制包和 iOS Demo 示例工程。
 
+## 合规说明
+
+- [Android / iOS 原生 SDK 合规配置与申报指南](docs/native-sdk-compliance-guide.md)
+
 ## Android
 
 - 当前版本：SDK `0.1.0`，Demo `1.0.0`（minSdk `23`）
