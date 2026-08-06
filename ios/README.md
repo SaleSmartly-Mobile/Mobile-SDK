@@ -4,14 +4,14 @@
 
 ## 最新版本
 
-当前版本为 `0.1.2`。
+当前版本为 `0.1.3`。
 
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/ios/sdk/salesmartly-chat-ios-sdk-v0.1.2.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/ios/sdk/salesmartly-chat-ios-sdk-v0.1.3.zip)
 - [查看 Demo 源码](demo/demo-source)
 
 > **入口说明：** SDK 不提供默认外部入口、悬浮按钮或 Launcher。宿主必须自行实现聊天按钮，并在按钮点击事件中调用 `SalesmartlyChat.openChat()` 打开聊天。
 
-`0.1.2` 调整原生 Host 的展示边界：关闭态不再渲染 SDK Launcher，宿主通过 `SalesmartlyChat.openChat()` 打开窗口，打开后的聊天 UI 铺满 Host 可用区域；同时修复 SwiftUI/UIKit 关闭状态同步，扩大 Header 操作按钮触控区，并让帮助中心、留资/离线引导、推广卡邮箱与评分校验、消息摘要和未读预览的默认文案跟随当前语言。
+`0.1.3` 增加 SDK 初始化日活日志：远端插件配置有效后异步上报，按设备安装、插件、自然日和 SDK 版本去重；失败不阻断初始化，并在下次初始化时重试。
 
 > 从 `0.1.1` 升级时，如此前依赖 `SalesmartlyChatHost` 自带 Launcher，需要改为宿主自行提供入口并调用 `SalesmartlyChat.openChat()`。
 
@@ -19,16 +19,16 @@
 
 | 字段 | 值 |
 | --- | --- |
-| 文件 | `ios/sdk/salesmartly-chat-ios-sdk-v0.1.2.zip` |
-| 版本 | `0.1.2` |
+| 文件 | `ios/sdk/salesmartly-chat-ios-sdk-v0.1.3.zip` |
+| 版本 | `0.1.3` |
 | 类型 | `XCFramework`（动态 Framework） |
 | 真机架构 | `arm64` |
 | Simulator 架构 | `arm64`、`x86_64` |
 | 最低系统 | iOS 15.0 |
 | 构建类型 | Release |
 | 构建工具 | Xcode 26.6（17F113）、Swift 6.3.3 |
-| 文件大小 | `5424900` bytes |
-| SHA-256 | `f3d3dee79e731c8d2e96b9ab0980cbb48d59f82fc058629478b4a0014d8d78e9` |
+| 文件大小 | `7134651` bytes |
+| SHA-256 | `813a97f96ea84601a32cc06fb33d015f848b6b229bb34e666a8405ff05c050e5` |
 
 当前 ZIP 包发布编译后的 Swift module，已验证的编译环境为 Xcode 26.6（17F113）。使用其他 Swift 编译器版本前，请先在目标工程中完成编译验证。
 
@@ -38,7 +38,7 @@
 
 1. 在 Xcode 中选择 `File > Add Package Dependencies...`。
 2. 输入仓库地址 `https://github.com/SaleSmartly-Mobile/Mobile-SDK`。
-3. 选择 `0.1.2` 版本，并将 `SalesmartlyChat` product 添加到 App Target。
+3. 选择 `0.1.3` 版本，并将 `SalesmartlyChat` product 添加到 App Target。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
 也可以在宿主项目的 `Package.swift` 中声明：
@@ -46,7 +46,7 @@
 ```swift
 .package(
     url: "https://github.com/SaleSmartly-Mobile/Mobile-SDK.git",
-    exact: "0.1.2"
+    exact: "0.1.3"
 )
 ```
 
@@ -58,7 +58,7 @@
 
 ### 手动集成 ZIP
 
-1. 下载并解压 `salesmartly-chat-ios-sdk-v0.1.2.zip`。
+1. 下载并解压 `salesmartly-chat-ios-sdk-v0.1.3.zip`。
 2. 将 `SalesmartlyChat.xcframework` 拖入宿主工程，并勾选 App Target。
 3. 在 `Frameworks, Libraries, and Embedded Content` 中设置为 `Embed & Sign`。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
@@ -215,4 +215,4 @@ SalesmartlyChat.push("onReceiveMessage") { payload in
 
 [查看 Demo 源码](demo/demo-source)
 
-Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v0.1.2.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
+Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v0.1.3.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
