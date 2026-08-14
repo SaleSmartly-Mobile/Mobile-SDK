@@ -32,23 +32,33 @@ import com.salesmartly.chatwidget.ui.SalesmartlyChatHost
  * Android SDK 示例页面。
  *
  * 示例配置通过 `local.properties` 或环境变量注入 Web 项目脚本 URL，运行时使用公开
- * `SalesmartlyChat.initialize(context, scriptUrl)` 入口验证原生 SDK 初始化、打开聊天和回调链路。
+ * `SalesmartlyChat.initialize(context, scriptUrl)` 入口验证用户同意隐私政策后的原生 SDK 初始化、
+ * 打开聊天和回调链路。
  */
 class MainActivity : ComponentActivity() {
     private val notificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
     ) {}
+    private var sdkInitialized by mutableStateOf(false)
     private var sdkReady by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestNotificationPermissionIfNeeded()
-        initializeChatSdk()
 
         setContent {
             MaterialTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    SampleScreen(sdkReady = sdkReady)
+                    SampleScreen(
+                        sdkInitialized = sdkInitialized,
+                        sdkReady = sdkReady,
+                        onConsentAndInitialize = {
+                            if (!sdkInitialized) {
+                                sdkInitialized = true
+                                initializeChatSdk()
+                            }
+                        },
+                        onEnableNotifications = ::requestNotificationPermissionIfNeeded,
+                    )
                 }
             }
         }
@@ -92,7 +102,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun SampleScreen(sdkReady: Boolean) {
+private fun SampleScreen(
+    sdkInitialized: Boolean,
+    sdkReady: Boolean,
+    onConsentAndInitialize: () -> Unit,
+    onEnableNotifications: () -> Unit,
+) {
     val runtime = if (sdkReady) SalesmartlyChat.runtime() else null
     val sdkState = runtime?.state?.collectAsState()?.value
     Box(modifier = Modifier.fillMaxSize()) {
@@ -111,17 +126,28 @@ private fun SampleScreen(sdkReady: Boolean) {
                     text = "Salesmartly Chat Android Sample",
                     style = MaterialTheme.typography.titleLarge,
                 )
-                Button(onClick = SalesmartlyChat::openChat) {
-                    Text("Open chat")
-                }
-                Button(onClick = { SalesmartlyChat.sendTextMessage("你好") }) {
-                    Text("Send sample message")
-                }
-                Button(onClick = { SalesmartlyChat.showCollection(true) }) {
-                    Text("Show collection")
-                }
-                Button(onClick = { SalesmartlyChat.openCustomEntry("custom_1") }) {
-                    Text("Open custom entry")
+                if (!sdkInitialized) {
+                    Button(onClick = onConsentAndInitialize) {
+                        Text("同意隐私政策并初始化")
+                    }
+                } else if (!sdkReady) {
+                    Text("SDK 初始化中")
+                } else {
+                    Button(onClick = onEnableNotifications) {
+                        Text("启用消息通知")
+                    }
+                    Button(onClick = SalesmartlyChat::openChat) {
+                        Text("Open chat")
+                    }
+                    Button(onClick = { SalesmartlyChat.sendTextMessage("你好") }) {
+                        Text("Send sample message")
+                    }
+                    Button(onClick = { SalesmartlyChat.showCollection(true) }) {
+                        Text("Show collection")
+                    }
+                    Button(onClick = { SalesmartlyChat.openCustomEntry("custom_1") }) {
+                        Text("Open custom entry")
+                    }
                 }
             }
         }
