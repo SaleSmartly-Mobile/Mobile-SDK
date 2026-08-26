@@ -2,7 +2,7 @@
 
 该目录提供 SaleSmartly Chat Android 原生 SDK 的 Demo APK 与 Android 接入说明。Demo 使用原生 SDK UI，不通过 WebView 嵌入聊天插件页面。
 
-当前 Android SDK 产物基于 `salesmartly-chat-android` 源码提交 `0ba0f968c85c0a29e4fb4a42e0b01e0468584b47` 构建。
+当前 Android SDK 产物基于 `salesmartly-chat-android` 源码提交 `e8b367d86d109f80b943a7b10cdd80e66f2c9a89` 构建。
 SDK 版本为 `1.0.0`。Demo APK 沿用已发布的 `1.0.0`（`versionCode` 为 `1`）；下载后可使用下方 SHA-256 校验具体产物。
 
 ## Demo APK 下载
@@ -36,8 +36,8 @@ AAR 信息：
 | Maven 坐标 | `com.salesmartly:chatwidget-sdk:1.0.0` |
 | minSdk | `23` |
 | 构建类型 | `release` |
-| 文件大小 | `1540425` bytes |
-| SHA-256 | `f864153a61349912369336c0f1e09ba47a8ee49101242822e7b018f8fd25cd4e` |
+| 文件大小 | `1541529` bytes |
+| SHA-256 | `f555aae2457c276955885ce2ecb0e82945c5a6742e6b496f4a8701d054328097` |
 
 ## 1. 添加 SDK 依赖
 
@@ -59,10 +59,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.runtime:runtime")
     implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.10.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
-    implementation("androidx.datastore:datastore-preferences:1.2.1")
     implementation("androidx.room:room-runtime:2.8.4")
 
     implementation(platform("com.squareup.retrofit2:retrofit-bom:3.0.0"))
@@ -74,6 +71,20 @@ dependencies {
     }
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0")
+}
+```
+
+宿主 App 的 release 构建应启用 R8 和资源压缩，移除 SDK 及其依赖中未使用的代码和资源：
+
+```kotlin
+android {
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+        }
+    }
 }
 ```
 
