@@ -2,7 +2,7 @@
 
 该目录提供 SaleSmartly Chat Android 原生 SDK 的 Demo APK 与 Android 接入说明。Demo 使用原生 SDK UI，不通过 WebView 嵌入聊天插件页面。
 
-当前 Android SDK 产物基于 `salesmartly-chat-android` 源码提交 `e8b367d86d109f80b943a7b10cdd80e66f2c9a89` 构建。
+当前 Android SDK 产物基于 `salesmartly-chat-android` 源码提交 `e8b367d86d109f80b943a7b10cdd80e66f2c9a89` 及本次发布工作区变更构建。
 SDK 版本为 `1.0.0`。Demo APK 沿用已发布的 `1.0.0`（`versionCode` 为 `1`）；下载后可使用下方 SHA-256 校验具体产物。
 
 ## Demo APK 下载
@@ -36,8 +36,8 @@ AAR 信息：
 | Maven 坐标 | `com.salesmartly:chatwidget-sdk:1.0.0` |
 | minSdk | `23` |
 | 构建类型 | `release` |
-| 文件大小 | `1541529` bytes |
-| SHA-256 | `f555aae2457c276955885ce2ecb0e82945c5a6742e6b496f4a8701d054328097` |
+| 文件大小 | `1650747` bytes |
+| SHA-256 | `5f73d6cba8859de5b630e97b3a85421ec085782948a38569bc7bc5ccaa1775ba` |
 
 ## 1. 添加 SDK 依赖
 
