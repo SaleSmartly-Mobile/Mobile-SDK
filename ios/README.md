@@ -27,8 +27,8 @@
 | 最低系统 | iOS 15.0 |
 | 构建类型 | Release |
 | 构建工具 | Xcode 26.6（17F113）、Swift 6.3.3 |
-| 文件大小 | `7582849` bytes |
-| SHA-256 | `8b8b18811575c098ee8565f8f330432c13d0cf20dad52bda8ef61cc0190e5c58` |
+| 文件大小 | `7686206` bytes |
+| SHA-256 | `6733f988c59dcff85fdf94376f6800d1e4d7f4cb1cfdf484ab94c4f46c8b7c87` |
 
 当前 ZIP 包发布编译后的 Swift module，已验证的编译环境为 Xcode 26.6（17F113）。使用其他 Swift 编译器版本前，请先在目标工程中完成编译验证。
 
