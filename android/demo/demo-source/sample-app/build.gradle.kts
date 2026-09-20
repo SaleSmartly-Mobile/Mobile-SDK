@@ -60,7 +60,7 @@ android {
 }
 
 dependencies {
-    implementation(files(rootProject.file("../../sdk/salesmartly-chatwidget-sdk-v1.0.0.aar")))
+    implementation(files(rootProject.file("../../sdk/salesmartly-chatwidget-sdk-v1.0.1.aar")))
     implementation(platform("androidx.compose:compose-bom:2026.03.01"))
     implementation(platform("com.squareup.retrofit2:retrofit-bom:3.0.0"))
     implementation("androidx.activity:activity-compose:1.13.0")
