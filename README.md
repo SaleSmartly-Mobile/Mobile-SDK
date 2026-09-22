@@ -14,11 +14,11 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## iOS
 
-- 当前版本：`1.0.1`（iOS 15.0+）
+- 当前版本：`1.0.2`（iOS 15.0+）
 - SDK 不提供默认聊天入口或 Launcher；宿主需使用自定义按钮调用 `SalesmartlyChat.openChat()` 打开聊天
 - [iOS 接入说明](ios/README.md)
 - SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/1.0.1/ios/sdk/salesmartly-chat-ios-sdk-v1.0.1.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/1.0.2/ios/sdk/salesmartly-chat-ios-sdk-v1.0.2.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
 
 ## 目录结构
@@ -46,4 +46,5 @@ ios/
     salesmartly-chat-ios-sdk-v0.1.4.zip
     salesmartly-chat-ios-sdk-v1.0.0.zip
     salesmartly-chat-ios-sdk-v1.0.1.zip
+    salesmartly-chat-ios-sdk-v1.0.2.zip
 ```
