@@ -4,14 +4,16 @@
 
 ## 最新版本
 
-当前版本为 `1.0.3`。
+当前版本为 `1.0.3`，2026-09-22 同版本修订补齐首页自定义渠道图标。
 
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/1.0.3/ios/sdk/salesmartly-chat-ios-sdk-v1.0.3.zip)
+本次仅更新二进制内容，SDK 版本号和 ZIP 文件名不变；原 `1.0.3` 标签不移动。请通过下方固定提交链接下载本次修订包，原 `/1.0.3/` 下载链接仍为修订前的包。
+
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/3ff97f974025b9045e68a6725fe6a1122818d4fe/ios/sdk/salesmartly-chat-ios-sdk-v1.0.3.zip)
 - [查看 Demo 源码](demo/demo-source)
 
 > **入口说明：** SDK 不提供默认外部入口、悬浮按钮或 Launcher。宿主必须自行实现聊天按钮，并在按钮点击事件中调用 `SalesmartlyChat.openChat()` 打开聊天。
 
-`1.0.3` 修复客服首页已配置的其他渠道入口被侧边栏或单图标设置隐藏的问题，首页显示条件与 Web SDK 保持一致。现有初始化、打开聊天和渠道点击 API 保持不变。
+`1.0.3` 修复客服首页已配置的其他渠道入口被侧边栏或单图标设置隐藏的问题，首页显示条件与 Web SDK 保持一致。本次修订让自定义渠道按 Web 首页规则读取 `entry_url` 并显示原图，覆盖主渠道与其他渠道列表。现有初始化、打开聊天和渠道点击 API 保持不变。
 
 `1.0.0` 将 SDK 版本统一为正式版本，并包含此前版本的隐私清单、通知授权策略、聊天图片缩放预览、主输入区外点击收起键盘，以及聊天窗口底部安全区背景修正。
 
@@ -29,12 +31,12 @@
 | 最低系统 | iOS 15.0 |
 | 构建类型 | Release |
 | 构建工具 | Xcode 27.0（27A266a）、Swift 6.4 |
-| 文件大小 | `14579008` bytes |
-| SHA-256 | `a8768758216b9187352bb0d97aa4f14d26a40910d01c186c8ef5e5c1cbe8ee6c` |
+| 文件大小 | `14600589` bytes |
+| SHA-256 | `212e12706d9b70858500223afc911ea35535d6d7cf97c6fb9339411309b1d359` |
 
-当前 ZIP 包延续 `1.0.2` 的分发方式，启用 `BUILD_LIBRARY_FOR_DISTRIBUTION=YES`，包含三个架构对应的 `.swiftinterface` 文本接口；本次公开接口与 `1.0.2` 一致，保留其 Xcode 27 模块导入修复。
+当前 ZIP 包延续 `1.0.2` 的分发方式，启用 `BUILD_LIBRARY_FOR_DISTRIBUTION=YES`，包含三个架构对应的 `.swiftinterface` 文本接口；本次公开接口与修订前 `1.0.3` 一致，保留其 Xcode 27 模块导入修复。
 
-已通过 Xcode 27.0 / Swift 6.4 的真机与模拟器 Release 构建、12 项首页/配置/渠道/版本上报相关回归测试，以及公开 Demo 使用新版 ZIP 的 iOS Simulator 编译。三个架构的公开接口、dSYM UUID 和 SDK 资源已核验。最低部署目标仍为 iOS 15；本次未验证旧版 Xcode、真机运行或真实客服会话收发。
+已通过 Xcode 27.0 / Swift 6.4 的真机与模拟器 Release 构建、9 项首页/配置/渠道相关回归测试，以及公开 Demo 使用新版 ZIP 的 iOS Simulator 编译。三个架构的公开接口、dSYM UUID 和 SDK 资源已核验。最低部署目标仍为 iOS 15；本次未验证旧版 Xcode、客户实际图标显示、真机运行或真实客服会话收发。
 
 ## 安装
 
@@ -42,7 +44,7 @@
 
 1. 在 Xcode 中选择 `File > Add Package Dependencies...`。
 2. 输入仓库地址 `https://github.com/SaleSmartly-Mobile/Mobile-SDK`。
-3. 选择 `1.0.3` 版本，并将 `SalesmartlyChat` product 添加到 App Target。
+3. 选择 Commit 依赖规则并填写 `3ff97f974025b9045e68a6725fe6a1122818d4fe`，将 `SalesmartlyChat` product 添加到 App Target。仅选择 Exact Version `1.0.3` 会得到修订前的包。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
 也可以在宿主项目的 `Package.swift` 中声明：
@@ -50,7 +52,7 @@
 ```swift
 .package(
     url: "https://github.com/SaleSmartly-Mobile/Mobile-SDK.git",
-    exact: "1.0.3"
+    revision: "3ff97f974025b9045e68a6725fe6a1122818d4fe"
 )
 ```
 
@@ -67,13 +69,13 @@
 3. 在 `Frameworks, Libraries, and Embedded Content` 中设置为 `Embed & Sign`。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
-## 从旧版本升级到 1.0.3
+## 从旧版本或原 1.0.3 升级到本次修订
 
-- **SwiftPM：** 将依赖版本更新为 `1.0.3`；若使用 Exact Version，请修改锁定版本后重新解析依赖，确认 `Package.resolved` 中该包为 `1.0.3`，再重新构建。
-- **手动集成：** 下载新版 ZIP，完整替换工程中的 `SalesmartlyChat.xcframework`，并保持 `Embed & Sign`。不要只替换内部可执行文件。
+- **SwiftPM：** 将依赖规则改为 Commit/revision `3ff97f974025b9045e68a6725fe6a1122818d4fe`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定 Exact Version `1.0.3` 不会获得本次修订。
+- **手动集成：** 使用本文新的固定提交下载链接，核对上方 SHA-256，解压并完整替换工程中的 `SalesmartlyChat.xcframework`，保持 `Embed & Sign`。文件名相同不代表内容相同；不要复用本地旧 ZIP，也不要只替换内部可执行文件。
 - **CocoaPods 包装或本地 Pod：** 如果项目通过自行维护的 Pod 引入旧二进制，需要让该 Pod 的维护方将其引用的完整 XCFramework 更新为新版，再更新对应依赖。本仓库未提供可直接执行 `pod update SalesmartlyChat` 的官方 Pod。
 - 确认工程只引用一份 SDK。替换后执行 `Product > Clean Build Folder` 再构建；仅当仍加载旧包时，再重置包缓存或清理该工程的 DerivedData。
-- 本版本修复首页渠道显示判断，现有初始化和聊天入口 API 保持不变。在后台开启所需渠道并配置为聊天窗内展示，重新构建 App 后验证客服首页渠道入口及跳转。
+- 本版本修复首页渠道显示判断，现有初始化和聊天入口 API 保持不变。在后台开启所需渠道并配置为聊天窗内展示，重新构建 App 后验证客服首页渠道入口、自定义图标及跳转。
 - 接入方需重新构建并发布 App 更新；已经安装的 App 不会因 GitHub 仓库更新而自动替换 SDK。
 - 从 `1.0.1` 或更早版本升级时，若宿主对 SDK 的公开枚举进行穷举 `switch`，请根据编译诊断补充 `@unknown default` 分支；这是 `1.0.2` 启用 library evolution 后的接入要求。
 
