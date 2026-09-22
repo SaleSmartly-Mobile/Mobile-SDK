@@ -1,11 +1,11 @@
 {
   "sdk_version": "1.0.3",
   "source_branch": "codex/fix-ios-home-channel-visibility",
-  "source_commit": "62197e5350217968b1f7b38a4458d7366874991e",
-  "source_state": "dirty",
+  "source_commit": "bd947aae1effef58c10b618e58304d8f5160cdc3",
+  "source_state": "clean",
   "artifact": "salesmartly-chat-ios-sdk-v1.0.3.zip",
-  "size_bytes": 14579008,
-  "sha256": "a8768758216b9187352bb0d97aa4f14d26a40910d01c186c8ef5e5c1cbe8ee6c",
+  "size_bytes": 14600589,
+  "sha256": "212e12706d9b70858500223afc911ea35535d6d7cf97c6fb9339411309b1d359",
   "verification": {
     "device_release_build": true,
     "simulator_release_build": true,
