@@ -1,0 +1,21 @@
+{
+  "sdk_version": "1.0.4",
+  "source_branch": "codex/fix-ios-voice-decoding-20260923",
+  "source_commit": "b9e9d7f4f1b8133eb4638b542a67b1fdeb3bb2b1",
+  "source_state": "clean",
+  "artifact": "salesmartly-chat-ios-sdk-v1.0.4.zip",
+  "size_bytes": 15060996,
+  "sha256": "07def974db5ab9d2d132e4413d4c2838cb8b2d6c3b9cb6f7aac20f726b4e37f6",
+  "verification": {
+    "device_release_build": true,
+    "simulator_release_build": true,
+    "architectures": [
+      "ios-arm64",
+      "ios-simulator-arm64",
+      "ios-simulator-x86_64"
+    ],
+    "dsym_uuid_matches": true,
+    "resources_match": true,
+    "consumer_typecheck": true
+  }
+}
