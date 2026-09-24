@@ -14,17 +14,22 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## iOS
 
-- 当前版本：`1.0.3`（2026-09-22 自定义渠道图标修订，iOS 15.0+）
+- 当前版本：`1.0.4`（2026-09-24，Opus 语音解码与文字选区复制，iOS 15.0+）
 - SDK 不提供默认聊天入口或 Launcher；宿主需使用自定义按钮调用 `SalesmartlyChat.openChat()` 打开聊天
 - [iOS 接入说明](ios/README.md)
 - SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/3ff97f974025b9045e68a6725fe6a1122818d4fe/ios/sdk/salesmartly-chat-ios-sdk-v1.0.3.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/6cbc087fcdcba70cad92ee017b97e4a36dcd4f3d/ios/sdk/salesmartly-chat-ios-sdk-v1.0.4.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
+
+## iOS 1.0.4 更新
+
+- 增加 Ogg/Opus 语音解码，并支持长按文字消息后拖动选区、仅复制选中文字。
+- SwiftPM 请锁定提交 `6cbc087fcdcba70cad92ee017b97e4a36dcd4f3d`；已使用早期 `1.0.4` 包的项目也需更新产物并重新构建 App。
 
 ## 1.0.3 更新与升级
 
 - Android / iOS 修复客服首页已配置渠道被侧边栏设置隐藏的问题，首页显示条件与 Web SDK 保持一致。
-- iOS 同版本修订补齐首页自定义渠道的 `entry_url` 图片渲染。ZIP 文件名和 SDK 版本号仍为 `1.0.3`，请使用上方新的固定提交下载链接；原 `1.0.3` 标签保留旧包。
+- iOS `1.0.3` 同版本修订补齐首页自定义渠道的 `entry_url` 图片渲染，原 `1.0.3` 标签保留修订前的包；当前下载入口已更新到包含该修复的 `1.0.4`。
 - iOS 使用 SwiftPM 指定本次修订提交，或完整替换 XCFramework；Android 替换新版 AAR 并更新依赖文件名，具体步骤见两端接入说明。
 - 现有初始化和聊天入口 API 保持不变。接入方需重新构建并发布 App，已安装的 App 不会因仓库更新而自动生效。
 - Android Demo 源码已引用新版 AAR；下载区现有 Demo APK 仍为历史 1.0.0，验证本次修复请使用新版 SDK 或自行构建 Demo。
@@ -57,4 +62,5 @@ ios/
     salesmartly-chat-ios-sdk-v1.0.1.zip
     salesmartly-chat-ios-sdk-v1.0.2.zip
     salesmartly-chat-ios-sdk-v1.0.3.zip
+    salesmartly-chat-ios-sdk-v1.0.4.zip
 ```
