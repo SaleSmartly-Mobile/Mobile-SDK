@@ -1,11 +1,11 @@
 {
   "sdk_version": "1.0.4",
-  "source_branch": "codex/feat-ios-message-text-selection-20260924",
-  "source_commit": "57e3cfc847cbac4a942e60f28a2c3514b7de441a",
+  "source_branch": "main",
+  "source_commit": "5c77afe9beadbcf453462371ec82010be7a5f72a",
   "source_state": "clean",
   "artifact": "salesmartly-chat-ios-sdk-v1.0.4.zip",
-  "size_bytes": 15159125,
-  "sha256": "a88abd3dc0a85a60c26eaf910d72f612d53d9ac7b0128d281f4f481f0e053516",
+  "size_bytes": 18465360,
+  "sha256": "c7831e0ce0aa1db30bdc34fe0fae70dda89dcae81cdd1f3c41927799dd92405d",
   "verification": {
     "device_release_build": true,
     "simulator_release_build": true,

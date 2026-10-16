@@ -1,13 +1,13 @@
 {
   "sdk_version": "1.0.3",
-  "source_branch": "codex/fix-home-social-channels",
-  "source_commit": "7142ff5bd9f75eb34e83a5ab597d88732b621ea0",
-  "source_state": "dirty",
+  "source_branch": "main",
+  "source_commit": "8aed1b09e612bf429e8909e4f16e0ec7073159cc",
+  "source_state": "clean",
   "artifact": "salesmartly-chatwidget-sdk-v1.0.3.aar",
-  "size_bytes": 1691806,
-  "sha256": "43fb19660c81ce35aee746dab7b8bc5947f829b35464a637065c9ef5264e9ecb",
+  "size_bytes": 1734903,
+  "sha256": "271b65795d617eb2bf3d97e2fc2b8610323cc0f391a13de6e2efc5c1672d5227",
   "verification": {
-    "unit_tests": 26,
+    "unit_tests": 636,
     "failures": 0,
     "release_build": true
   }

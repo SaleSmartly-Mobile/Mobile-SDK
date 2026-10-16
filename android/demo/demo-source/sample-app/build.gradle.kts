@@ -73,6 +73,8 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.retrofit2:converter-kotlinx-serialization")
     implementation("com.squareup.retrofit2:retrofit")
+    implementation("io.coil-kt.coil3:coil-compose-core:3.4.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.4.0")
     implementation("io.socket:socket.io-client:2.1.2") {
         exclude(group = "org.json", module = "json")
     }
