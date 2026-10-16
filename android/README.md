@@ -2,14 +2,22 @@
 
 该目录提供 SaleSmartly Chat Android 原生 SDK 的 Demo APK 与 Android 接入说明。Demo 使用原生 SDK UI，不通过 WebView 嵌入聊天插件页面。
 
-当前 Android SDK 产物基于 `salesmartly-chat-android` 源码提交 `7142ff5bd9f75eb34e83a5ab597d88732b621ea0`，叠加首页社媒渠道显示修复构建。
-SDK 版本为 `1.0.3`。当渠道配置为聊天窗内展示（`integration_type == "chat"`）时，首页其他渠道入口不再因侧边栏或单图标配置被隐藏，与 Web SDK `main` 保持一致。主渠道、渠道排序及入口点击方式保持原有逻辑。
+当前 Android SDK 产物于 2026-10-16 从 `salesmartly-chat-android` 的 `main` 提交 `8aed1b09e612bf429e8909e4f16e0ec7073159cc` 构建，继续使用版本号 `1.0.3` 和原 AAR 文件名。版本号相同不代表二进制内容相同，请核对下方 SHA-256。
 
-Demo 源码已引用 SDK `1.0.3`；下方 Demo APK 沿用已发布的 `1.0.0`（`versionCode` 为 `1`），不是新版 SDK 的验证包，不包含本次修复。下载后可使用下方 SHA-256 校验具体产物。
+本次修订：
+
+- 使用 Coil `3.4.0` 按显示尺寸加载图片，复用下载和缓存，减少原尺寸位图的内存占用。
+- 调整顶部栏安全区、主行与渠道行的叠层以及圆角阴影，补齐评价完成后的感谢插图与居中布局。
+- 保留媒体发送失败及 Socket 超时的脱敏说明，支持再次点击失败标识查看。
+- 公开接口保持不变；手动 AAR 接入须补充下方两项 Coil 依赖。
+
+此前 `1.0.3` 的首页渠道显示修复继续保留：当渠道配置为聊天窗内展示（`integration_type == "chat"`）时，首页其他渠道入口不再因侧边栏或单图标配置被隐藏，主渠道、渠道排序及入口点击方式保持原有逻辑。
+
+Demo 已使用本次 SDK `1.0.3` 重建为 debug APK，已打包新版 SDK 与 Coil 依赖；应用版本保持 `1.0.0`（`versionCode` 为 `1`），包名和签名与旧公开 Demo 一致。下载后请使用下方 SHA-256 校验产物。
 
 ## Demo APK 下载
 
-[点击下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/main/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
+[点击下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
 
 APK 信息：
 
@@ -21,14 +29,16 @@ APK 信息：
 | versionCode | `1` |
 | minSdk | `23` |
 | 构建类型 | `debug` |
-| 文件大小 | `13835770` bytes |
-| SHA-256 | `5e4d04914b1d05608006b6d2daf3cc3b11f787d3b026c4d6bb8fa0211cc6ab1d` |
+| 文件大小 | `14282424` bytes |
+| SHA-256 | `95fce893e2e99bae86fd72bcd6be883d41ff51394afcd878054def14f6ce7eb9` |
+
+本次 Demo 独立工程构建及 APK v1 / v2 签名校验通过；未连接 Android 设备，未执行安装运行验证。
 
 Android 设备下载后如提示禁止安装未知来源应用，请在系统设置中允许当前浏览器或文件管理器安装 APK。
 
 ## SDK AAR 下载
 
-[点击下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/1.0.3/android/sdk/salesmartly-chatwidget-sdk-v1.0.3.aar)
+[点击下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/sdk/salesmartly-chatwidget-sdk-v1.0.3.aar)
 
 AAR 信息：
 
@@ -38,20 +48,22 @@ AAR 信息：
 | Maven 坐标 | `com.salesmartly:chatwidget-sdk:1.0.3` |
 | minSdk | `23` |
 | 构建类型 | `release` |
-| 文件大小 | `1691806` bytes |
-| SHA-256 | `43fb19660c81ce35aee746dab7b8bc5947f829b35464a637065c9ef5264e9ecb` |
+| 文件大小 | `1734903` bytes |
+| SHA-256 | `271b65795d617eb2bf3d97e2fc2b8610323cc0f391a13de6e2efc5c1672d5227` |
 
-## 升级到 1.0.3
+本次已通过 636 项单测、Release AAR 构建及 R8 构建验证；未执行真机运行或真实客服会话回归。
+
+## 升级到本次 1.0.3 修订
 
 1. 下载上方 SDK AAR，替换宿主 App 使用的旧版 AAR，并将 Gradle 的 `implementation(files(...))` 引用更新为 `salesmartly-chatwidget-sdk-v1.0.3.aar`。
-2. 保持现有 SDK 初始化、打开聊天、回调代码和依赖配置；本次修复不需要修改接入 API。
-3. 在后台开启所需渠道并配置为聊天窗内展示，重新构建 App，打开客服首页验证渠道入口的显示和跳转，再发布 App 更新。
+2. 保持现有 SDK 初始化、打开聊天及回调代码，并为手动 AAR 接入补充 `io.coil-kt.coil3:coil-compose-core:3.4.0` 与 `io.coil-kt.coil3:coil-network-okhttp:3.4.0`；完整依赖示例见下方。
+3. 重新构建 App，验证聊天图片、顶部栏、评价完成态和失败提示，再发布 App 更新。使用早期 `1.0.3` 包的项目也需替换 AAR，文件名和版本号相同不会自动更新已有产物。
 
 已安装的 App 需要升级宿主 App 才会使用新 SDK。仅更新后台配置或此仓库不会替换 App 内已有的 SDK。
 
 ## 1. 添加 SDK 依赖
 
-当前发布仓库直接提供 AAR。下载上方 `salesmartly-chatwidget-sdk-v1.0.3.aar`，放入宿主 App 的 `libs` 目录：
+当前发布仓库直接提供 AAR。宿主 App 的 `compileSdk` 需为 `36` 或更高，最低运行系统仍为 minSdk `23`。下载上方 `salesmartly-chatwidget-sdk-v1.0.3.aar`，放入宿主 App 的 `libs` 目录：
 
 ```kotlin
 dependencies {
@@ -76,6 +88,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit")
     implementation("com.squareup.retrofit2:converter-kotlinx-serialization")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("io.coil-kt.coil3:coil-compose-core:3.4.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.4.0")
     implementation("io.socket:socket.io-client:2.1.2") {
         exclude(group = "org.json", module = "json")
     }

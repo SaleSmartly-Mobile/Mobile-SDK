@@ -4,11 +4,20 @@
 
 ## 最新版本
 
-当前版本为 `1.0.4`，2026-09-24 修订包含 Ogg/Opus 语音解码，并支持长按文字消息后拖动选区、仅复制选中文字。
+当前版本为 `1.0.4`，2026-10-16 从 `salesmartly-chat-ios` 的 `main` 提交 `5c77afe9beadbcf453462371ec82010be7a5f72a` 重新构建。
 
-本次继续使用 `1.0.4` 版本号和 ZIP 文件名。请通过下方固定提交链接下载；早期 `1.0.4` 包不包含文字选区复制功能，已有固定提交链接和旧标签保持不变。
+本次继续使用 `1.0.4` 版本号和 ZIP 文件名。请通过下方固定提交链接下载并核对 SHA-256；已有固定提交链接和旧标签保持不变，早期 `1.0.4` 包不会自动获得本次修订。
 
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/6cbc087fcdcba70cad92ee017b97e4a36dcd4f3d/ios/sdk/salesmartly-chat-ios-sdk-v1.0.4.zip)
+本次修订：
+
+- 图片加载接入 Nuke `12.8.0`，按显示尺寸降采样，复用下载和缓存。Nuke 已封装在 SDK 二进制中，宿主无需单独安装，公开接口保持不变。
+- 调整顶部栏主行与渠道行的叠层及圆角阴影，保留系统安全区布局，补齐评价完成后的感谢插图与居中布局。
+- 普通语音在首次播放前读取并显示时长。MP4 继续使用视频消息和系统预览；确认仅有音轨时隐藏系统 QuickTime 占位图，保留播放控件，正常视频画面不被遮挡，异步识别结果不会恢复用户已暂停的播放。
+- 为失败的图片、文件和视频补充可点击失败标识，展示上传失败提示。
+
+2026-09-24 修订中的 Ogg/Opus 语音解码及长按文字消息后拖动选区、仅复制选中文字的能力继续保留。
+
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/ios/sdk/salesmartly-chat-ios-sdk-v1.0.4.zip)
 - [查看 Demo 源码](demo/demo-source)
 
 > **入口说明：** SDK 不提供默认外部入口、悬浮按钮或 Launcher。宿主必须自行实现聊天按钮，并在按钮点击事件中调用 `SalesmartlyChat.openChat()` 打开聊天。
@@ -30,13 +39,15 @@
 | Simulator 架构 | `arm64`、`x86_64` |
 | 最低系统 | iOS 15.0 |
 | 构建类型 | Release |
-| 构建工具 | Xcode 27.0（27A266a）、Swift 6.4 |
-| 文件大小 | `15159125` bytes |
-| SHA-256 | `a88abd3dc0a85a60c26eaf910d72f612d53d9ac7b0128d281f4f481f0e053516` |
+| 构建工具 | Xcode 27.1（27A9275）、Swift 6.4（swiftlang-6.4.0.34.1） |
+| 文件大小 | `18465360` bytes |
+| SHA-256 | `c7831e0ce0aa1db30bdc34fe0fae70dda89dcae81cdd1f3c41927799dd92405d` |
 
 当前 ZIP 包延续 `1.0.2` 的分发方式，启用 `BUILD_LIBRARY_FOR_DISTRIBUTION=YES`，包含三个架构对应的 `.swiftinterface` 文本接口，保留 Xcode 27 模块导入修复。现有初始化和聊天入口 API 保持不变。
 
-已通过真机与模拟器 Release 构建、三个架构的 iOS 15 consumer 类型检查、7 项链接与语音回归测试，以及 iOS 26.5 的 4 项 App 宿主测试和 1 项长按拖动选区后系统复制的 UI 测试。三个架构的公开接口、dSYM UUID、SDK 资源及 Opus 许可证已核验。最低部署目标仍为 iOS 15；本次未验证旧版 Xcode、真机运行或真实客服会话收发。
+本次已通过 269 项单测、真机 `arm64` 与模拟器 `arm64` / `x86_64` 的 Release 构建，以及三个架构的 iOS 15 二进制接入类型检查。公开接口、dSYM UUID、SDK 资源及 Opus / Nuke 许可证已核验。最低部署目标仍为 iOS 15；本次未执行真机运行或真实客服会话回归，也未验证旧版 Xcode。
+
+分发仓根包与 iOS Demo 的本地二进制 SwiftPM 解析均已通过，校验值与上述 ZIP 一致。现有 Demo 已完成无签名的 Simulator Debug 构建，产物包含 `arm64` / `x86_64`、SDK Framework 和感谢插图资源；本次未运行 Demo UI。
 
 ## 安装
 
@@ -44,7 +55,7 @@
 
 1. 在 Xcode 中选择 `File > Add Package Dependencies...`。
 2. 输入仓库地址 `https://github.com/SaleSmartly-Mobile/Mobile-SDK`。
-3. 选择 Commit 依赖规则并填写 `6cbc087fcdcba70cad92ee017b97e4a36dcd4f3d`，将 `SalesmartlyChat` product 添加到 App Target。请使用该固定提交，版本号相同不代表二进制内容相同。
+3. 选择 Commit 依赖规则并填写 `8a57a19f19abe8ee72feb471004217c38ef4ba19`，将 `SalesmartlyChat` product 添加到 App Target。请使用该固定提交，版本号相同不代表二进制内容相同。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
 也可以在宿主项目的 `Package.swift` 中声明：
@@ -52,7 +63,7 @@
 ```swift
 .package(
     url: "https://github.com/SaleSmartly-Mobile/Mobile-SDK.git",
-    revision: "6cbc087fcdcba70cad92ee017b97e4a36dcd4f3d"
+    revision: "8a57a19f19abe8ee72feb471004217c38ef4ba19"
 )
 ```
 
@@ -71,11 +82,11 @@
 
 ## 从旧版本或早期 1.0.4 包升级到本次修订
 
-- **SwiftPM：** 将依赖规则改为 Commit/revision `6cbc087fcdcba70cad92ee017b97e4a36dcd4f3d`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次修订。
+- **SwiftPM：** 将依赖规则改为 Commit/revision `8a57a19f19abe8ee72feb471004217c38ef4ba19`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次修订。
 - **手动集成：** 使用本文新的固定提交下载链接，核对上方 SHA-256，解压并完整替换工程中的 `SalesmartlyChat.xcframework`，保持 `Embed & Sign`。文件名相同不代表内容相同；不要复用本地旧 ZIP，也不要只替换内部可执行文件。
 - **CocoaPods 包装或本地 Pod：** 如果项目通过自行维护的 Pod 引入旧二进制，需要让该 Pod 的维护方将其引用的完整 XCFramework 更新为新版，再更新对应依赖。本仓库未提供官方 Pod；若项目已维护名为 `SalesmartlyChat` 的 Pod，更新其下载 URL 和 SHA 后，执行 `pod update SalesmartlyChat --no-repo-update` 并提交锁文件，普通 `pod install` 可能继续使用同版本旧包。
 - 确认工程只引用一份 SDK。替换后执行 `Product > Clean Build Folder` 再构建；仅当仍加载旧包时，再重置包缓存或清理该工程的 DerivedData。
-- 现有初始化和聊天入口 API 保持不变。重新构建 App 后，验证语音播放、文字长按拖动选区及复制内容。
+- Nuke `12.8.0` 已封装在二进制内，无需额外添加 Nuke 依赖；现有初始化和聊天入口 API 保持不变。重新构建 App 后，验证图片加载、顶部栏、评价完成态、语音时长、纯音轨 MP4 预览及失败提示。
 - 接入方需重新构建并发布 App 更新；已经安装的 App 不会因 GitHub 仓库更新而自动替换 SDK。
 - 从 `1.0.1` 或更早版本升级时，若宿主对 SDK 的公开枚举进行穷举 `switch`，请根据编译诊断补充 `@unknown default` 分支；这是 `1.0.2` 启用 library evolution 后的接入要求。
 
