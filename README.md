@@ -6,20 +6,28 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## Android
 
-- 当前版本：SDK `1.0.3`（2026-10-16 同版本修订），Demo `1.0.0`（minSdk `23`）
+- 当前版本：SDK `1.0.4`（2026-10-19），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.0.4`
 - [Android 接入说明](android/README.md)
 - [下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
-- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/sdk/salesmartly-chatwidget-sdk-v1.0.3.aar)
+- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/14db64bf52b33052b55fbb77aaaa30664e86efc1/android/sdk/salesmartly-chatwidget-sdk-v1.0.4.aar)
 - [查看 Android Demo 源码](android/demo/demo-source)
 
 ## iOS
 
-- 当前版本：`1.0.4`（2026-10-16 同版本修订，iOS 15.0+）
+- 当前版本：`1.0.5`（2026-10-19，iOS 15.0+）
 - SDK 不提供默认聊天入口或 Launcher；宿主需使用自定义按钮调用 `SalesmartlyChat.openChat()` 打开聊天
 - [iOS 接入说明](ios/README.md)
 - SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/ios/sdk/salesmartly-chat-ios-sdk-v1.0.4.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/14db64bf52b33052b55fbb77aaaa30664e86efc1/ios/sdk/salesmartly-chat-ios-sdk-v1.0.5.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
+
+## 2026-10-19 更新
+
+- Android `1.0.4`、iOS `1.0.5` 补齐引用图片点击预览：普通图片、图文图片和搜同款引用加载成功后打开原图，加载中或失败时不打开预览。
+- iOS 修复长文字消息超出气泡宽度后显示不全的问题，并保留文字选区和复制功能。现有初始化及聊天入口 API 保持不变。
+- 本次 SDK 固定发布提交为 `14db64bf52b33052b55fbb77aaaa30664e86efc1`；源提交、文件大小与 SHA-256 见两端接入说明。旧包和历史固定链接继续保留，接入方需更新依赖并重新构建 App。
+- Android 636 项单测、6 项 API 36 模拟器真实触控回归、Release AAR 和示例 R8 构建通过。iOS App 宿主中 6 项引用图片与文字回归通过，另有 7 项图片管线与媒体测试、3 项版本断言通过；引用图片通过 SwiftUI 无障碍激活动作验证，未执行真机手势或 XCUITest 触控。
+- iOS 三个架构的 Release 构建与二进制接入类型检查、两端 Demo 源码的新依赖构建及根 SwiftPM 解析通过。本次未运行 Demo UI，也未执行真机或真实客服会话回归；公开 Android APK 仍保留原包，可从 Demo 源码构建验证新 SDK。
 
 ## 2026-10-16 同版本修订
 
@@ -57,6 +65,7 @@ android/
     salesmartly-chatwidget-sdk-v1.0.0.aar
     salesmartly-chatwidget-sdk-v1.0.1.aar
     salesmartly-chatwidget-sdk-v1.0.3.aar
+    salesmartly-chatwidget-sdk-v1.0.4.aar
 ios/
   README.md
   demo/
@@ -72,4 +81,5 @@ ios/
     salesmartly-chat-ios-sdk-v1.0.2.zip
     salesmartly-chat-ios-sdk-v1.0.3.zip
     salesmartly-chat-ios-sdk-v1.0.4.zip
+    salesmartly-chat-ios-sdk-v1.0.5.zip
 ```
