@@ -6,20 +6,30 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## Android
 
-- 当前版本：SDK `1.0.4`（2026-10-19），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.0.4`
+- 当前版本：SDK `1.0.5`（2026-10-26），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.0.5`
 - [Android 接入说明](android/README.md)
 - [下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
-- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/14db64bf52b33052b55fbb77aaaa30664e86efc1/android/sdk/salesmartly-chatwidget-sdk-v1.0.4.aar)
+- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/d98a52d9fc30dd1f094bfb05d69466d2b220f653/android/sdk/salesmartly-chatwidget-sdk-v1.0.5.aar)
 - [查看 Android Demo 源码](android/demo/demo-source)
 
 ## iOS
 
-- 当前版本：`1.0.5`（2026-10-19，iOS 15.0+）
+- 当前版本：`1.0.6`（2026-10-26，iOS 15.0+）
 - SDK 不提供默认聊天入口或 Launcher；宿主需使用自定义按钮调用 `SalesmartlyChat.openChat()` 打开聊天
 - [iOS 接入说明](ios/README.md)
 - SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/14db64bf52b33052b55fbb77aaaa30664e86efc1/ios/sdk/salesmartly-chat-ios-sdk-v1.0.5.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/d98a52d9fc30dd1f094bfb05d69466d2b220f653/ios/sdk/salesmartly-chat-ios-sdk-v1.0.6.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
+
+## 2026-10-26 更新
+
+- Android `1.0.5`、iOS `1.0.6` 修复会话恢复与后台自动重连：后台暂停自动重试、轮询和心跳，回前台按已有会话恢复，保留用户发送及回包。
+- iOS 作废后台迟到的 token / SSE 打开回调，避免重新建流；重复前台通知不重复补拉或绕过退避，入房成功清除旧会话错误。
+- 保留 `phase`、`operation`、`code`、`message`，增加可选脱敏诊断 `native_error_code`、`http_status`、`is_transient`。宿主可据此区分明确瞬时网络失败；TLS、DNS、HTTP、解析和未知故障不应被整体忽略。
+- 固定产物提交为 `d98a52d9fc30dd1f094bfb05d69466d2b220f653`。两端溯源清单、文件大小和 SHA-256 见对应接入说明；旧包与历史链接继续保留，需重新构建宿主 App 才会生效。
+- Android 641 项单测、2 项 Android 16 模拟器 HTTP/SSE/TLS 与 Compose 生命周期恢复测试，以及 SDK / 示例 release、R8 构建通过。iOS 恢复代码的 276 项 SwiftPM 测试、24 项 iOS 27 模拟器恢复测试及 8 项版本相关测试通过，无相关失败或跳过。
+- iOS 断网场景通过 URLSession / URLProtocol 故障注入，生命周期通知在模拟器执行；Android 网络测试使用本地故障服务器。本批未执行真机飞行模式或真实客服会话验证。
+- iOS 设备与模拟器三个架构的 Release 构建、Swift 消费类型检查、UUID / 资源核验通过；根 SwiftPM 解析及两端 Demo 源码消费新版包构建通过。公开 Android Demo APK 仍使用 SDK `1.0.3`，未替换原包。
 
 ## 2026-10-19 更新
 
@@ -66,6 +76,7 @@ android/
     salesmartly-chatwidget-sdk-v1.0.1.aar
     salesmartly-chatwidget-sdk-v1.0.3.aar
     salesmartly-chatwidget-sdk-v1.0.4.aar
+    salesmartly-chatwidget-sdk-v1.0.5.aar
 ios/
   README.md
   demo/
@@ -82,4 +93,5 @@ ios/
     salesmartly-chat-ios-sdk-v1.0.3.zip
     salesmartly-chat-ios-sdk-v1.0.4.zip
     salesmartly-chat-ios-sdk-v1.0.5.zip
+    salesmartly-chat-ios-sdk-v1.0.6.zip
 ```
