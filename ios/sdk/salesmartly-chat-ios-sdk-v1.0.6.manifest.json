@@ -1,0 +1,21 @@
+{
+  "sdk_version": "1.0.6",
+  "source_branch": "main",
+  "source_commit": "418aaded3c5b936d62f1f7b71ef9a73d75563d76",
+  "source_state": "clean",
+  "artifact": "salesmartly-chat-ios-sdk-v1.0.6.zip",
+  "size_bytes": 18524316,
+  "sha256": "eb207cceed02a673c0ba43de1de673ecf9a83c763e07e501f92e8c03ce96794e",
+  "verification": {
+    "device_release_build": true,
+    "simulator_release_build": true,
+    "architectures": [
+      "ios-arm64",
+      "ios-simulator-arm64",
+      "ios-simulator-x86_64"
+    ],
+    "dsym_uuid_matches": true,
+    "resources_match": true,
+    "consumer_typecheck": true
+  }
+}

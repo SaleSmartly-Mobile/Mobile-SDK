@@ -16,7 +16,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "SalesmartlyChat",
-            path: "../../sdk/salesmartly-chat-ios-sdk-v1.0.5.zip"
+            path: "../../sdk/salesmartly-chat-ios-sdk-v1.0.6.zip"
         ),
     ]
 )
