@@ -4,11 +4,16 @@
 
 ## 最新版本
 
-当前版本为 `1.0.6`，2026-10-26 从 `salesmartly-chat-ios` 的 `main` 提交 `418aaded3c5b936d62f1f7b71ef9a73d75563d76` 构建，固定发布提交为 `d98a52d9fc30dd1f094bfb05d69466d2b220f653`。
+当前版本为 `1.0.7`，2026-11-04 从 `salesmartly-chat-ios` 的 `main` 提交 `7589142447b6eff5c757cbdf0419a84362954e95` 构建，固定发布提交为 `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`。
 
-请通过下方固定提交链接下载 `1.0.6` 并核对 SHA-256；已有固定提交链接、旧包和旧标签保持不变，`1.0.5` 包不会自动获得本次修复。
+请通过下方固定提交链接下载 `1.0.7` 并核对 SHA-256；已有固定提交链接、旧包和旧标签保持不变，`1.0.5` 包不会自动获得本次修复。
 
-本次修复：
+本次新增：
+
+- `sendAttachment(fileURL:type:completion:)` 接收本地文件 `URL` 与明确的 `.image` / `.file`，打开聊天并上传发送，不再二次预览。宿主负责截图提示、预览确认及本地日志查找、打包与脱敏。
+- 单文件上限为 20 MiB；最终结果以服务端 ACK / 匹配消息 ID 回显为准，支持同消息重试、身份切换取消和关窗保留任务。180 秒总超时在留资等待期间暂停；`hideUpload` 仅隐藏 UI 入口，不阻止宿主 API。
+
+2026-10-26 的 `1.0.6` 修复继续保留：
 
 - 随 App 生命周期暂停后台 Socket.IO 自动重连、SSE 重试与在线心跳，回前台恢复已有会话，保留用户发送、上传及 ACK。
 - 作废迟到的 token / SSE 打开回调，避免后台重新建流；重复前台通知不重复补拉或绕过退避，入房成功清除旧会话错误。
@@ -28,7 +33,7 @@
 
 2026-09-24 修订中的 Ogg/Opus 语音解码及长按文字消息后拖动选区、仅复制选中文字的能力继续保留。
 
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/d98a52d9fc30dd1f094bfb05d69466d2b220f653/ios/sdk/salesmartly-chat-ios-sdk-v1.0.6.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28/ios/sdk/salesmartly-chat-ios-sdk-v1.0.7.zip)
 - [查看 Demo 源码](demo/demo-source)
 
 > **入口说明：** SDK 不提供默认外部入口、悬浮按钮或 Launcher。宿主必须自行实现聊天按钮，并在按钮点击事件中调用 `SalesmartlyChat.openChat()` 打开聊天。
@@ -43,22 +48,22 @@
 
 | 字段 | 值 |
 | --- | --- |
-| 文件 | `ios/sdk/salesmartly-chat-ios-sdk-v1.0.6.zip` |
-| 版本 | `1.0.6` |
+| 文件 | `ios/sdk/salesmartly-chat-ios-sdk-v1.0.7.zip` |
+| 版本 | `1.0.7` |
 | 类型 | `XCFramework`（动态 Framework） |
 | 真机架构 | `arm64` |
 | Simulator 架构 | `arm64`、`x86_64` |
 | 最低系统 | iOS 15.0 |
 | 构建类型 | Release |
 | 构建工具 | Xcode 27.1（27A9275）、Swift 6.4（swiftlang-6.4.0.34.1） |
-| 文件大小 | `18524316` bytes |
-| SHA-256 | `eb207cceed02a673c0ba43de1de673ecf9a83c763e07e501f92e8c03ce96794e` |
+| 文件大小 | `18706532` bytes |
+| SHA-256 | `f90b54184957569d210e2c2e50ad6ee13453dc30cdf3f1e77a2cc5e8e006f968` |
 
 当前 ZIP 包延续 `1.0.2` 的分发方式，启用 `BUILD_LIBRARY_FOR_DISTRIBUTION=YES`，包含三个架构对应的 `.swiftinterface` 文本接口，保留 Xcode 27 模块导入修复。现有初始化和聊天入口 API 保持不变。
 
-本批恢复代码通过 276 项 SwiftPM 测试和 24 项 iOS 27 模拟器恢复测试，版本变更另通过 8 项相关测试，无相关失败或跳过。恢复场景覆盖 token 失败、后台暂停、前台恢复、重复通知、迟到回调隔离、Socket 重连和在途用户回包；断网通过真实 URLSession 的 URLProtocol 故障注入，UIKit 生命周期通知在模拟器执行，未执行真机飞行模式。
+本批通过 295 项 SwiftPM 回归和 2 项 iOS 27 App 宿主交互测试，无相关失败或跳过。宿主测试覆盖直接打开聊天、关闭并释放控制器后继续上传，以及点击真实失败气泡后按原消息 ID 重试；交互通过 SwiftUI 无障碍激活与测试传输实现验证，未执行物理真机或线上真实客服会话。
 
-真机 `arm64` 与模拟器 `arm64` / `x86_64` 的 Release 构建、三个架构的 iOS 15 二进制接入类型检查均已通过；dSYM UUID、SDK 资源及 Opus / Nuke 许可证已核验。最低部署目标仍为 iOS 15；本次未执行真机运行或真实客服会话回归，也未验证旧版 Xcode。
+真机 `arm64` 与模拟器 `arm64` / `x86_64` 的 Release 构建、三个架构的 iOS 15 新 `sendAttachment` API 二进制接入类型检查均已通过；dSYM UUID、SDK 资源及 Opus / Nuke 许可证已核验。最低部署目标仍为 iOS 15；本次未执行真机运行或真实客服会话回归，也未验证旧版 Xcode。
 
 分发仓根 SwiftPM 解析及引用新版二进制的 iOS Demo 无签名 Simulator Debug 构建均已通过，校验值与上述 ZIP 一致；本次未运行 Demo UI。
 
@@ -68,7 +73,7 @@
 
 1. 在 Xcode 中选择 `File > Add Package Dependencies...`。
 2. 输入仓库地址 `https://github.com/SaleSmartly-Mobile/Mobile-SDK`。
-3. 选择 Commit 依赖规则并填写 `d98a52d9fc30dd1f094bfb05d69466d2b220f653`，将 `SalesmartlyChat` product 添加到 App Target。该固定提交引用 SDK `1.0.6`。
+3. 选择 Commit 依赖规则并填写 `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`，将 `SalesmartlyChat` product 添加到 App Target。该固定提交引用 SDK `1.0.7`。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
 也可以在宿主项目的 `Package.swift` 中声明：
@@ -76,7 +81,7 @@
 ```swift
 .package(
     url: "https://github.com/SaleSmartly-Mobile/Mobile-SDK.git",
-    revision: "d98a52d9fc30dd1f094bfb05d69466d2b220f653"
+    revision: "b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28"
 )
 ```
 
@@ -88,18 +93,18 @@
 
 ### 手动集成 ZIP
 
-1. 下载并解压 `salesmartly-chat-ios-sdk-v1.0.6.zip`。
+1. 下载并解压 `salesmartly-chat-ios-sdk-v1.0.7.zip`。
 2. 将 `SalesmartlyChat.xcframework` 拖入宿主工程，并勾选 App Target。
 3. 在 `Frameworks, Libraries, and Embedded Content` 中设置为 `Embed & Sign`。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
-## 从旧版本升级到 1.0.6
+## 从旧版本升级到 1.0.7
 
-- **SwiftPM：** 将依赖规则改为 Commit/revision `d98a52d9fc30dd1f094bfb05d69466d2b220f653`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次修复。
+- **SwiftPM：** 将依赖规则改为 Commit/revision `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次修复。
 - **手动集成：** 使用本文新的固定提交下载链接，核对上方 SHA-256，解压并完整替换工程中的 `SalesmartlyChat.xcframework`，保持 `Embed & Sign`。不要复用本地旧 ZIP，也不要只替换内部可执行文件。
 - **CocoaPods 包装或本地 Pod：** 如果项目通过自行维护的 Pod 引入旧二进制，需要让该 Pod 的维护方将其引用的完整 XCFramework 更新为新版，再更新对应依赖。本仓库未提供官方 Pod；若项目已维护名为 `SalesmartlyChat` 的 Pod，更新其下载 URL 和 SHA 后，执行 `pod update SalesmartlyChat --no-repo-update` 并提交锁文件，普通 `pod install` 可能继续使用同版本旧包。
 - 确认工程只引用一份 SDK。替换后执行 `Product > Clean Build Folder` 再构建；仅当仍加载旧包时，再重置包缓存或清理该工程的 DerivedData。
-- Nuke `12.8.0` 已封装在二进制内，无需额外添加 Nuke 依赖；现有初始化和聊天入口 API 保持不变。重新构建 App 后，验证断网恢复、前后台切换及原有聊天功能。
+- Nuke `12.8.0` 已封装在二进制内，无需额外添加 Nuke 依赖；现有初始化和聊天入口 API 保持不变。重新构建 App 后，验证附件发送、断网恢复、前后台切换及原有聊天功能。
 - 接入方需重新构建并发布 App 更新；已经安装的 App 不会因 GitHub 仓库更新而自动替换 SDK。
 - 从 `1.0.1` 或更早版本升级时，若宿主对 SDK 的公开枚举进行穷举 `switch`，请根据编译诊断补充 `@unknown default` 分支；这是 `1.0.2` 启用 library evolution 后的接入要求。
 
@@ -257,4 +262,4 @@ SalesmartlyChat.push("onReceiveMessage") { payload in
 
 [查看 Demo 源码](demo/demo-source)
 
-Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v1.0.6.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
+Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v1.0.7.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。

@@ -2,9 +2,14 @@
 
 该目录提供 SaleSmartly Chat Android 原生 SDK 的 Demo APK 与 Android 接入说明。Demo 使用原生 SDK UI，不通过 WebView 嵌入聊天插件页面。
 
-当前 Android SDK `1.0.5` 于 2026-10-26 从 `salesmartly-chat-android` 的 `main` 提交 `3bfc856bae5d22ceba4d27b5aed0bd9daaf9e475` 构建，固定发布提交为 `d98a52d9fc30dd1f094bfb05d69466d2b220f653`。请通过下方固定链接下载并核对 SHA-256。
+当前 Android SDK `1.0.6` 于 2026-11-04 从 `salesmartly-chat-android` 的 `main` 提交 `1adafc08ccea7b313f57f1414bb0d7ab89b417c5` 构建，固定发布提交为 `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`。请通过下方固定链接下载并核对 SHA-256。
 
-本次修复：
+本次新增：
+
+- `sendAttachment(uri, type, completion)` 接收本地 `Uri` 与明确的 `SalesmartlyAttachmentType.Image` / `File`，打开聊天并上传发送，不再二次预览。宿主负责截图提示、预览确认及本地日志查找、打包与脱敏。
+- 单文件上限为 20 MiB；只在服务端 ACK / 匹配消息 ID 回显后报告成功，支持同消息重试、身份隔离及关窗保留任务。180 秒总超时在留资等待期间暂停；`hideUpload` 仅隐藏 UI 入口，不阻止宿主 API。
+
+2026-10-26 的 `1.0.5` 修复继续保留：
 
 - 宿主进入后台时暂停自动重连、未读轮询与在线心跳，回前台恢复；连续自动请求失败按退避重试，重复前台通知不绕过等待。
 - 聊天宿主卸载时同步可见状态，保留已建立通道和用户发送回包；自定义宿主需正确同步前后台可见状态。
@@ -24,7 +29,7 @@
 
 此前 `1.0.3` 的首页渠道显示修复继续保留：当渠道配置为聊天窗内展示（`integration_type == "chat"`）时，首页其他渠道入口不再因侧边栏或单图标配置被隐藏，主渠道、渠道排序及入口点击方式保持原有逻辑。
 
-当前公开 Demo APK 仍是使用 SDK `1.0.3` 构建的原 debug 包，包含 Coil 依赖；应用版本为 `1.0.0`（`versionCode` 为 `1`）。下方下载链接和校验值保留不变。Demo 源码已改用 SDK `1.0.5` 并构建通过；验证本次会话恢复修复请按第 9 节从源码构建。
+当前公开 Demo APK 仍是使用 SDK `1.0.3` 构建的原 debug 包，包含 Coil 依赖；应用版本为 `1.0.0`（`versionCode` 为 `1`）。下方下载链接和校验值保留不变。Demo 源码已改用 SDK `1.0.6` 并构建通过；运行新版 Demo 请按第 9 节从源码构建，验证宿主附件 API 需自行接入 `sendAttachment`。
 
 ## Demo APK 下载
 
@@ -49,36 +54,36 @@ Android 设备下载后如提示禁止安装未知来源应用，请在系统设
 
 ## SDK AAR 下载
 
-[点击下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/d98a52d9fc30dd1f094bfb05d69466d2b220f653/android/sdk/salesmartly-chatwidget-sdk-v1.0.5.aar)
+[点击下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28/android/sdk/salesmartly-chatwidget-sdk-v1.0.6.aar)
 
 AAR 信息：
 
 | 字段 | 值 |
 | --- | --- |
-| 文件 | `android/sdk/salesmartly-chatwidget-sdk-v1.0.5.aar` |
-| Maven 坐标 | `com.salesmartly:chatwidget-sdk:1.0.5` |
+| 文件 | `android/sdk/salesmartly-chatwidget-sdk-v1.0.6.aar` |
+| Maven 坐标 | `com.salesmartly:chatwidget-sdk:1.0.6` |
 | minSdk | `23` |
 | 构建类型 | `release` |
-| 文件大小 | `1737993` bytes |
-| SHA-256 | `3306d92d30cadbea9dd173b2ece94324d0ae3605d6f917f99cb9bcb02ec34d84` |
+| 文件大小 | `1767159` bytes |
+| SHA-256 | `1e468d455f6f94eeb97a079d8b53b04525dd0c2b3d7bb7333ff81833b7ffd6be` |
 
-本次已通过 641 项单测、2 项 Android 16 模拟器网络与 Compose 生命周期恢复测试、Release AAR、示例 release / R8 及分发 Demo debug 构建。恢复测试覆盖真实 HTTP token 超时、后台暂停、前台单次恢复、卸载后的 SSE 断流与 TLS 错误分类；AAR 内置版本、结构及 SHA-256 已核验。网络故障使用本地测试服务，未执行 Demo UI、真机飞行模式或真实客服会话回归。
+本次已通过 663 项单测、4 项 Android 16 模拟器附件与宿主生命周期测试、正式 Release AAR、示例 release / R8、临时 Maven 元数据及分发 Demo debug 构建。附件测试覆盖真实 file / content Uri、关窗卸载及连接尚未建立时任务续发；AAR 内置版本、新 API、旧上传 ABI、结构及 SHA-256 已核验。宿主测试使用测试传输实现，未执行分发 Demo UI、物理真机或线上真实客服会话回归。
 
-## 升级到 1.0.5
+## 升级到 1.0.6
 
-1. 下载上方 SDK AAR，替换宿主 App 使用的旧版 AAR，并将 Gradle 的 `implementation(files(...))` 引用更新为 `salesmartly-chatwidget-sdk-v1.0.5.aar`。
+1. 下载上方 SDK AAR，替换宿主 App 使用的旧版 AAR，并将 Gradle 的 `implementation(files(...))` 引用更新为 `salesmartly-chatwidget-sdk-v1.0.6.aar`。
 2. 保持现有 SDK 初始化、打开聊天及回调代码，并为手动 AAR 接入补充 `io.coil-kt.coil3:coil-compose-core:3.4.0` 与 `io.coil-kt.coil3:coil-network-okhttp:3.4.0`；完整依赖示例见下方。
-3. 重新构建 App，验证断网恢复、前后台切换及原有聊天功能，再发布 App 更新。继续引用旧版 AAR 的项目不会自动获得本次修复。
+3. 重新构建 App，验证附件发送、断网恢复、前后台切换及原有聊天功能，再发布 App 更新。继续引用旧版 AAR 的项目不会自动获得本次修复。
 
 已安装的 App 需要升级宿主 App 才会使用新 SDK。仅更新后台配置或此仓库不会替换 App 内已有的 SDK。
 
 ## 1. 添加 SDK 依赖
 
-当前发布仓库直接提供 AAR。宿主 App 的 `compileSdk` 需为 `36` 或更高，最低运行系统仍为 minSdk `23`。下载上方 `salesmartly-chatwidget-sdk-v1.0.5.aar`，放入宿主 App 的 `libs` 目录：
+当前发布仓库直接提供 AAR。宿主 App 的 `compileSdk` 需为 `36` 或更高，最低运行系统仍为 minSdk `23`。下载上方 `salesmartly-chatwidget-sdk-v1.0.6.aar`，放入宿主 App 的 `libs` 目录：
 
 ```kotlin
 dependencies {
-    implementation(files("libs/salesmartly-chatwidget-sdk-v1.0.5.aar"))
+    implementation(files("libs/salesmartly-chatwidget-sdk-v1.0.6.aar"))
 }
 ```
 
@@ -123,11 +128,11 @@ android {
 }
 ```
 
-SDK 工程已声明 Maven 坐标 `com.salesmartly:chatwidget-sdk:1.0.5`。只有该坐标发布到宿主 App 已配置的 Maven 仓库后，才可以改用以下依赖；当前发布仓库不表示该坐标已经公开发布：
+SDK 工程已声明 Maven 坐标 `com.salesmartly:chatwidget-sdk:1.0.6`。只有该坐标发布到宿主 App 已配置的 Maven 仓库后，才可以改用以下依赖；当前发布仓库不表示该坐标已经公开发布：
 
 ```kotlin
 dependencies {
-    implementation("com.salesmartly:chatwidget-sdk:1.0.5")
+    implementation("com.salesmartly:chatwidget-sdk:1.0.6")
 }
 ```
 
@@ -377,7 +382,7 @@ SDK 在发送本地通知前会检查系统授权状态，不主动触发运行�
 ## 9. 运行 Demo 源码
 
 `android/demo/demo-source` 会直接依赖同一仓库中的
-`android/sdk/salesmartly-chatwidget-sdk-v1.0.5.aar`。在 `android/demo/demo-source/local.properties` 中配置
+`android/sdk/salesmartly-chatwidget-sdk-v1.0.6.aar`。在 `android/demo/demo-source/local.properties` 中配置
 Android SDK 路径和项目脚本地址：
 
 ```properties

@@ -6,20 +6,29 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## Android
 
-- 当前版本：SDK `1.0.5`（2026-10-26），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.0.5`
+- 当前版本：SDK `1.0.6`（2026-11-04），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.0.6`
 - [Android 接入说明](android/README.md)
 - [下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
-- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/d98a52d9fc30dd1f094bfb05d69466d2b220f653/android/sdk/salesmartly-chatwidget-sdk-v1.0.5.aar)
+- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28/android/sdk/salesmartly-chatwidget-sdk-v1.0.6.aar)
 - [查看 Android Demo 源码](android/demo/demo-source)
 
 ## iOS
 
-- 当前版本：`1.0.6`（2026-10-26，iOS 15.0+）
+- 当前版本：`1.0.7`（2026-11-04，iOS 15.0+）
 - SDK 不提供默认聊天入口或 Launcher；宿主需使用自定义按钮调用 `SalesmartlyChat.openChat()` 打开聊天
 - [iOS 接入说明](ios/README.md)
 - SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/d98a52d9fc30dd1f094bfb05d69466d2b220f653/ios/sdk/salesmartly-chat-ios-sdk-v1.0.6.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28/ios/sdk/salesmartly-chat-ios-sdk-v1.0.7.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
+
+## 2026-11-04 更新
+
+- Android `1.0.6`、iOS `1.0.7` 新增 `sendAttachment`：宿主完成截图提示、预览确认或本地日志选择后，将本地文件及明确的图片 / 文件类型交给 SDK，直接打开聊天、上传并发送，不再二次预览。
+- 单文件上限为 20 MiB；最终结果以服务端 ACK 或匹配消息 ID 的回显为准，上传完成不等于发送成功。支持同消息重试、身份切换取消、关窗保留任务；180 秒总超时在留资等待期间暂停。截图检测、日志查找、打包与脱敏由宿主完成。
+- 固定产物提交为 `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`；两端溯源清单、大小和 SHA-256 见接入说明。旧包、历史链接和公开 Demo APK 保留；Demo 源码已使用新包。
+- Android 663 项单测、4 项 Android 16 模拟器附件与宿主生命周期测试，以及正式 SDK / 示例 Release、R8、Maven 元数据和分发 Demo 构建通过。
+- iOS 295 项 SwiftPM 回归、2 项 iOS 27 App 宿主交互测试通过；设备 arm64、模拟器 arm64 / x86_64 的 Release、新 API 消费类型检查、dSYM / 资源核验、SwiftPM 解析及分发 Demo 构建通过。
+- 宿主交互使用模拟器与测试传输实现验证；本批未执行物理真机或线上真实客服会话测试。
 
 ## 2026-10-26 更新
 
@@ -77,6 +86,7 @@ android/
     salesmartly-chatwidget-sdk-v1.0.3.aar
     salesmartly-chatwidget-sdk-v1.0.4.aar
     salesmartly-chatwidget-sdk-v1.0.5.aar
+    salesmartly-chatwidget-sdk-v1.0.6.aar
 ios/
   README.md
   demo/
@@ -94,4 +104,5 @@ ios/
     salesmartly-chat-ios-sdk-v1.0.4.zip
     salesmartly-chat-ios-sdk-v1.0.5.zip
     salesmartly-chat-ios-sdk-v1.0.6.zip
+    salesmartly-chat-ios-sdk-v1.0.7.zip
 ```
