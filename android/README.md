@@ -4,6 +4,8 @@
 
 当前 Android SDK `1.0.6` 于 2026-11-04 从 `salesmartly-chat-android` 的 `main` 提交 `1adafc08ccea7b313f57f1414bb0d7ab89b417c5` 构建，固定发布提交为 `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`。请通过下方固定链接下载并核对 SHA-256。
 
+有关方法签名、参数、回调和调用示例，请参阅 [Android API 参考](../docs/android-api.md)。
+
 本次新增：
 
 - `sendAttachment(uri, type, completion)` 接收本地 `Uri` 与明确的 `SalesmartlyAttachmentType.Image` / `File`，打开聊天并上传发送，不再二次预览。宿主负责截图提示、预览确认及本地日志查找、打包与脱敏。
