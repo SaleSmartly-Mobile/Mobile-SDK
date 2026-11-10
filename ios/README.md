@@ -93,6 +93,18 @@
 .product(name: "SalesmartlyChat", package: "Mobile-SDK")
 ```
 
+### CocoaPods
+
+在 `Podfile` 的 App target 中加入以下依赖，安装 iOS SDK 1.0.7：
+
+```ruby
+pod 'SalesmartlyChat', :podspec => 'https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/5a736385547a3fcffd1940feb072b91da5c76015/ios/sdk/SalesmartlyChat-1.0.7.podspec'
+```
+
+执行 `pod install`，用 Xcode 打开生成的 `.xcworkspace`，在 Swift 文件中添加 `import SalesmartlyChat`。SDK 最低支持 iOS 15.0。
+
+当前通过 GitHub 提供官方 podspec，请保留上述 `:podspec` 地址。此版本尚未发布到 CocoaPods Trunk。
+
 ### 手动集成 ZIP
 
 1. 下载并解压 `salesmartly-chat-ios-sdk-v1.0.7.zip`。
@@ -104,7 +116,7 @@
 
 - **SwiftPM：** 将依赖规则改为 Commit/revision `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次修复。
 - **手动集成：** 使用本文新的固定提交下载链接，核对上方 SHA-256，解压并完整替换工程中的 `SalesmartlyChat.xcframework`，保持 `Embed & Sign`。不要复用本地旧 ZIP，也不要只替换内部可执行文件。
-- **CocoaPods 包装或本地 Pod：** 如果项目通过自行维护的 Pod 引入旧二进制，需要让该 Pod 的维护方将其引用的完整 XCFramework 更新为新版，再更新对应依赖。本仓库未提供官方 Pod；若项目已维护名为 `SalesmartlyChat` 的 Pod，更新其下载 URL 和 SHA 后，执行 `pod update SalesmartlyChat --no-repo-update` 并提交锁文件，普通 `pod install` 可能继续使用同版本旧包。
+- **CocoaPods：** 使用上方的官方 `:podspec` 地址后，执行 `pod update SalesmartlyChat --no-repo-update` 并提交更新后的锁文件。若继续使用自维护 Pod，由维护方更新完整 XCFramework 的下载地址及 SHA-256，再更新对应依赖。
 - 确认工程只引用一份 SDK。替换后执行 `Product > Clean Build Folder` 再构建；仅当仍加载旧包时，再重置包缓存或清理该工程的 DerivedData。
 - Nuke `12.8.0` 已封装在二进制内，无需额外添加 Nuke 依赖；现有初始化和聊天入口 API 保持不变。重新构建 App 后，验证附件发送、断网恢复、前后台切换及原有聊天功能。
 - 接入方需重新构建并发布 App 更新；已经安装的 App 不会因 GitHub 仓库更新而自动替换 SDK。
