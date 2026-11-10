@@ -2,6 +2,8 @@
 
 该目录存放 SaleSmartly Chat iOS 原生 SDK 二进制发布包和 Demo 示例工程，不提交 SDK 源码。SDK 提供原生聊天运行时、SwiftUI Host 和 UIKit 容器。
 
+有关方法签名、参数、回调和调用示例，请参阅 [iOS API 参考](../docs/ios-api.md)。
+
 ## 最新版本
 
 当前版本为 `1.0.7`，2026-11-04 从 `salesmartly-chat-ios` 的 `main` 提交 `7589142447b6eff5c757cbdf0419a84362954e95` 构建，固定发布提交为 `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`。
