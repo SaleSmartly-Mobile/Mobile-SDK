@@ -6,23 +6,32 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## Android
 
-- 当前版本：SDK `1.0.6`（2026-11-04），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.0.6`
+- 当前版本：SDK `1.1.0`（2026-11-16），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.1.0`
 - [Android 接入说明](android/README.md)
 - [Android API 参考](docs/android-api.md)
 - [下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
-- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28/android/sdk/salesmartly-chatwidget-sdk-v1.0.6.aar)
+- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/android/sdk/salesmartly-chatwidget-sdk-v1.1.0.aar)
 - [查看 Android Demo 源码](android/demo/demo-source)
 
 ## iOS
 
-- 当前版本：`1.0.7`（2026-11-04，iOS 15.0+）
+- 当前版本：`1.1.0`（2026-11-16，iOS 15.0+）；Demo 源码已更新到 SDK `1.1.0`
 - SDK 不提供默认聊天入口或 Launcher；宿主需使用自定义按钮调用 `SalesmartlyChat.openChat()` 打开聊天
 - [iOS 接入说明](ios/README.md)
 - [CocoaPods 安装](ios/README.md#cocoapods)
 - [iOS API 参考](docs/ios-api.md)
 - SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28/ios/sdk/salesmartly-chat-ios-sdk-v1.0.7.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/ios/sdk/salesmartly-chat-ios-sdk-v1.1.0.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
+
+## 2026-11-16 更新
+
+- Android、iOS `1.1.0` 在普通视频、视频图文和模板视频的预览页增加保存到系统相册入口；保存中禁止重复点击，完成后显示成功、失败或权限提示。现有公开 API 和消息协议保持不变。
+- Android 6–9（API 23–28）在用户点击保存时申请 `WRITE_EXTERNAL_STORAGE`；Android 10（API 29）及以上使用 MediaStore，无需读取图库权限。iOS 仅申请新增相册内容权限，宿主须配置 `NSPhotoLibraryAddUsageDescription`，示例见 [iOS 接入说明](ios/README.md#视频保存到相册权限)。
+- 固定产物提交为 `cdcb8d3a4aeb8389980398dff84a93e7941a57c2`；两端源码提交、文件大小和 SHA-256 见接入说明。旧包与历史链接保留，公开 Android Demo APK 仍使用 SDK `1.0.3`；两端 Demo 源码均已使用 `1.1.0`。
+- Android 668 项 JVM 单测、9 项 API 36 模拟器视频保存服务与 UI 测试，以及 SDK / 示例 Release、R8、Maven 元数据和分发 Demo 构建通过。
+- iOS 4 项视频下载与保存服务测试、普通视频 / 视频图文 / 模板视频入口及权限拒绝 UI 验证、8 项版本测试和 1 项文案测试通过；三个架构的 Release、解包后二进制消费类型检查、dSYM UUID / 资源 / 许可证核验、SwiftPM 解析及分发 Demo 构建通过。这是本功能的定向验证，未执行全量 iOS 回归。
+- 本批未执行物理真机、Android 6–9 相册运行、最低 iOS 15 设备、线上真实客服会话或分发 Demo UI 验证。
 
 ## 2026-11-04 更新
 
@@ -93,6 +102,8 @@ android/
     salesmartly-chatwidget-sdk-v1.0.4.aar
     salesmartly-chatwidget-sdk-v1.0.5.aar
     salesmartly-chatwidget-sdk-v1.0.6.aar
+    salesmartly-chatwidget-sdk-v1.1.0.aar
+    salesmartly-chatwidget-sdk-v1.1.0.manifest.json
 ios/
   README.md
   demo/
@@ -112,4 +123,7 @@ ios/
     salesmartly-chat-ios-sdk-v1.0.6.zip
     salesmartly-chat-ios-sdk-v1.0.7.zip
     SalesmartlyChat-1.0.7.podspec
+    salesmartly-chat-ios-sdk-v1.1.0.zip
+    salesmartly-chat-ios-sdk-v1.1.0.manifest.json
+    SalesmartlyChat-1.1.0.podspec
 ```
