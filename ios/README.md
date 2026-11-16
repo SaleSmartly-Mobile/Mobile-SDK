@@ -6,14 +6,26 @@
 
 ## 最新版本
 
-当前版本为 `1.0.7`，2026-11-04 从 `salesmartly-chat-ios` 的 `main` 提交 `7589142447b6eff5c757cbdf0419a84362954e95` 构建，固定发布提交为 `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`。
+当前版本为 `1.1.0`，2026-11-16 从 `salesmartly-chat-ios` 的 `main` 提交 `31cdc5bb708012fc541078e58d593b601b1c2551` 构建，固定发布提交为 `cdcb8d3a4aeb8389980398dff84a93e7941a57c2`。
 
-请通过下方固定提交链接下载 `1.0.7` 并核对 SHA-256；已有固定提交链接、旧包和旧标签保持不变，`1.0.5` 包不会自动获得本次修复。
+请通过下方固定提交链接下载 `1.1.0` 并核对 SHA-256；已有固定提交链接、旧包和旧标签保持不变，旧包不会自动获得本次功能。
 
 本次新增：
 
+- 普通视频、视频图文和模板视频的预览页增加保存到系统相册入口。显示保存中状态并禁止重复点击，Photos 完成写入后才提示成功；下载或写入失败、权限拒绝、宿主未配置权限说明分别提示。
+- 保存时仅请求新增相册内容的 `.addOnly` 权限，不读取用户已有照片或视频；宿主需配置 `NSPhotoLibraryAddUsageDescription`，见下方[权限说明](#视频保存到相册权限)。
+- 保存流程复用消息对应的下载换签，外部视频 URL 直接下载；换签失败时提示保存失败。现有公开 API 和消息协议保持不变。
+
+2026-11-04 的 `1.0.7` 功能继续保留：
+
 - `sendAttachment(fileURL:type:completion:)` 接收本地文件 `URL` 与明确的 `.image` / `.file`，打开聊天并上传发送，不再二次预览。宿主负责截图提示、预览确认及本地日志查找、打包与脱敏。
 - 单文件上限为 20 MiB；最终结果以服务端 ACK / 匹配消息 ID 回显为准，支持同消息重试、身份切换取消和关窗保留任务。180 秒总超时在留资等待期间暂停；`hideUpload` 仅隐藏 UI 入口，不阻止宿主 API。
+
+该历史版本从源码提交 `7589142447b6eff5c757cbdf0419a84362954e95` 构建：[下载 1.0.7 ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28/ios/sdk/salesmartly-chat-ios-sdk-v1.0.7.zip)，大小 `18706532` bytes，SHA-256 为 `f90b54184957569d210e2c2e50ad6ee13453dc30cdf3f1e77a2cc5e8e006f968`；[1.0.7 官方 podspec](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/5a736385547a3fcffd1940feb072b91da5c76015/ios/sdk/SalesmartlyChat-1.0.7.podspec) 保持可用。
+
+该批次通过 295 项 SwiftPM 回归和 2 项 iOS 27 App 宿主交互测试，无相关失败或跳过。宿主测试覆盖直接打开聊天、关闭并释放控制器后继续上传，以及点击真实失败气泡后按原消息 ID 重试；交互通过 SwiftUI 无障碍激活与测试传输实现验证，未执行物理真机或线上真实客服会话。
+
+该批次真机 `arm64` 与模拟器 `arm64` / `x86_64` 的 Release 构建、三个架构的 iOS 15 `sendAttachment` API 二进制接入类型检查均已通过；dSYM UUID、SDK 资源及 Opus / Nuke 许可证已核验。分发仓根 SwiftPM 解析及引用 `1.0.7` 的 iOS Demo 无签名 Simulator Debug 构建均已通过，校验值与该版本 ZIP 一致；未运行 Demo UI，也未验证旧版 Xcode。
 
 2026-10-26 的 `1.0.6` 修复继续保留：
 
@@ -35,7 +47,7 @@
 
 2026-09-24 修订中的 Ogg/Opus 语音解码及长按文字消息后拖动选区、仅复制选中文字的能力继续保留。
 
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28/ios/sdk/salesmartly-chat-ios-sdk-v1.0.7.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/ios/sdk/salesmartly-chat-ios-sdk-v1.1.0.zip)
 - [查看 Demo 源码](demo/demo-source)
 
 > **入口说明：** SDK 不提供默认外部入口、悬浮按钮或 Launcher。宿主必须自行实现聊天按钮，并在按钮点击事件中调用 `SalesmartlyChat.openChat()` 打开聊天。
@@ -50,22 +62,22 @@
 
 | 字段 | 值 |
 | --- | --- |
-| 文件 | `ios/sdk/salesmartly-chat-ios-sdk-v1.0.7.zip` |
-| 版本 | `1.0.7` |
+| 文件 | `ios/sdk/salesmartly-chat-ios-sdk-v1.1.0.zip` |
+| 版本 | `1.1.0` |
 | 类型 | `XCFramework`（动态 Framework） |
 | 真机架构 | `arm64` |
 | Simulator 架构 | `arm64`、`x86_64` |
 | 最低系统 | iOS 15.0 |
 | 构建类型 | Release |
 | 构建工具 | Xcode 27.1（27A9275）、Swift 6.4（swiftlang-6.4.0.34.1） |
-| 文件大小 | `18706532` bytes |
-| SHA-256 | `f90b54184957569d210e2c2e50ad6ee13453dc30cdf3f1e77a2cc5e8e006f968` |
+| 文件大小 | `18879793` bytes |
+| SHA-256 | `61bf496924651de279d8c49b449cdd9e319449cf56734464b894fd4674c361ec` |
 
 当前 ZIP 包延续 `1.0.2` 的分发方式，启用 `BUILD_LIBRARY_FOR_DISTRIBUTION=YES`，包含三个架构对应的 `.swiftinterface` 文本接口，保留 Xcode 27 模块导入修复。现有初始化和聊天入口 API 保持不变。
 
-本批通过 295 项 SwiftPM 回归和 2 项 iOS 27 App 宿主交互测试，无相关失败或跳过。宿主测试覆盖直接打开聊天、关闭并释放控制器后继续上传，以及点击真实失败气泡后按原消息 ID 重试；交互通过 SwiftUI 无障碍激活与测试传输实现验证，未执行物理真机或线上真实客服会话。
+本次通过 4 项视频下载与保存服务测试，完成普通视频、视频图文、模板视频入口及权限拒绝的模拟器 UI 验证，另通过 8 项版本测试和 1 项文案测试。服务与 UI 验证覆盖实际 Photos 视频写入与可播放性、失败处理及保存结果提示；这是本功能的定向验证，未执行全量 iOS 回归。
 
-真机 `arm64` 与模拟器 `arm64` / `x86_64` 的 Release 构建、三个架构的 iOS 15 新 `sendAttachment` API 二进制接入类型检查均已通过；dSYM UUID、SDK 资源及 Opus / Nuke 许可证已核验。最低部署目标仍为 iOS 15；本次未执行真机运行或真实客服会话回归，也未验证旧版 Xcode。
+真机 `arm64` 与模拟器 `arm64` / `x86_64` 的 Release 构建、解包后三个架构的二进制消费类型检查均已通过；dSYM UUID、SDK 资源及 Opus / Nuke 许可证已核验。最低部署目标仍为 iOS 15；本次未执行物理真机、最低 iOS 15 设备或线上真实客服会话验证，也未验证旧版 Xcode。
 
 分发仓根 SwiftPM 解析及引用新版二进制的 iOS Demo 无签名 Simulator Debug 构建均已通过，校验值与上述 ZIP 一致；本次未运行 Demo UI。
 
@@ -75,7 +87,7 @@
 
 1. 在 Xcode 中选择 `File > Add Package Dependencies...`。
 2. 输入仓库地址 `https://github.com/SaleSmartly-Mobile/Mobile-SDK`。
-3. 选择 Commit 依赖规则并填写 `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`，将 `SalesmartlyChat` product 添加到 App Target。该固定提交引用 SDK `1.0.7`。
+3. 选择 Commit 依赖规则并填写 `cdcb8d3a4aeb8389980398dff84a93e7941a57c2`，将 `SalesmartlyChat` product 添加到 App Target。该固定提交引用 SDK `1.1.0`。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
 也可以在宿主项目的 `Package.swift` 中声明：
@@ -83,7 +95,7 @@
 ```swift
 .package(
     url: "https://github.com/SaleSmartly-Mobile/Mobile-SDK.git",
-    revision: "b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28"
+    revision: "cdcb8d3a4aeb8389980398dff84a93e7941a57c2"
 )
 ```
 
@@ -95,10 +107,10 @@
 
 ### CocoaPods
 
-在 `Podfile` 的 App target 中加入以下依赖，安装 iOS SDK 1.0.7：
+在 `Podfile` 的 App target 中加入以下依赖，安装 iOS SDK 1.1.0：
 
 ```ruby
-pod 'SalesmartlyChat', :podspec => 'https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/5a736385547a3fcffd1940feb072b91da5c76015/ios/sdk/SalesmartlyChat-1.0.7.podspec'
+pod 'SalesmartlyChat', :podspec => 'https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/c38ffacb0525a3a6afb18ae8939bd9b02d2bd470/ios/sdk/SalesmartlyChat-1.1.0.podspec'
 ```
 
 执行 `pod install`，用 Xcode 打开生成的 `.xcworkspace`，在 Swift 文件中添加 `import SalesmartlyChat`。SDK 最低支持 iOS 15.0。
@@ -107,17 +119,29 @@ pod 'SalesmartlyChat', :podspec => 'https://raw.githubusercontent.com/SaleSmartl
 
 ### 手动集成 ZIP
 
-1. 下载并解压 `salesmartly-chat-ios-sdk-v1.0.7.zip`。
+1. 下载并解压 `salesmartly-chat-ios-sdk-v1.1.0.zip`。
 2. 将 `SalesmartlyChat.xcframework` 拖入宿主工程，并勾选 App Target。
 3. 在 `Frameworks, Libraries, and Embedded Content` 中设置为 `Embed & Sign`。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
-## 从旧版本升级到 1.0.7
+### 视频保存到相册权限
 
-- **SwiftPM：** 将依赖规则改为 Commit/revision `b8defdc91e4bdcdc74389c54aefa3dbfc1a84d28`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次修复。
+宿主 App 的 `Info.plist` 必须包含非空的新增相册内容用途说明；SDK 无法代替宿主配置该项。例如：
+
+```xml
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>用于将聊天中的视频保存到您的相册。</string>
+```
+
+用户点击视频预览页的保存按钮时，SDK 通过 Photos 请求 `.addOnly` 授权，仅新增视频，不读取已有照片或视频。本功能无需申请读取图库权限。缺少上述配置时会提示“当前应用未配置相册保存权限”；用户拒绝时会提示前往系统设置允许保存到相册，授权后可再次保存。
+
+## 从旧版本升级到 1.1.0
+
+- **SwiftPM：** 将依赖规则改为 Commit/revision `cdcb8d3a4aeb8389980398dff84a93e7941a57c2`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次功能。
 - **手动集成：** 使用本文新的固定提交下载链接，核对上方 SHA-256，解压并完整替换工程中的 `SalesmartlyChat.xcframework`，保持 `Embed & Sign`。不要复用本地旧 ZIP，也不要只替换内部可执行文件。
 - **CocoaPods：** 使用上方的官方 `:podspec` 地址后，执行 `pod update SalesmartlyChat --no-repo-update` 并提交更新后的锁文件。若继续使用自维护 Pod，由维护方更新完整 XCFramework 的下载地址及 SHA-256，再更新对应依赖。
 - 确认工程只引用一份 SDK。替换后执行 `Product > Clean Build Folder` 再构建；仅当仍加载旧包时，再重置包缓存或清理该工程的 DerivedData。
+- 为宿主 `Info.plist` 配置上方 `NSPhotoLibraryAddUsageDescription`；重新构建 App 后验证视频保存、授权和拒绝提示。
 - Nuke `12.8.0` 已封装在二进制内，无需额外添加 Nuke 依赖；现有初始化和聊天入口 API 保持不变。重新构建 App 后，验证附件发送、断网恢复、前后台切换及原有聊天功能。
 - 接入方需重新构建并发布 App 更新；已经安装的 App 不会因 GitHub 仓库更新而自动替换 SDK。
 - 从 `1.0.1` 或更早版本升级时，若宿主对 SDK 的公开枚举进行穷举 `switch`，请根据编译诊断补充 `@unknown default` 分支；这是 `1.0.2` 启用 library evolution 后的接入要求。
@@ -276,4 +300,4 @@ SalesmartlyChat.push("onReceiveMessage") { payload in
 
 [查看 Demo 源码](demo/demo-source)
 
-Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v1.0.7.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
+Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v1.1.0.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。Demo 的 `Info.plist` 已配置 `NSPhotoLibraryAddUsageDescription`。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
