@@ -2,11 +2,13 @@
 
 该目录提供 SaleSmartly Chat Android 原生 SDK 的 Demo APK 与 Android 接入说明。Demo 使用原生 SDK UI，不通过 WebView 嵌入聊天插件页面。
 
-当前 Android SDK `1.1.0` 于 2026-11-16 从 `salesmartly-chat-android` 的 `main` 提交 `19cf211a7a39a56141e246ffab229dbcb88c96ba` 构建，固定发布提交为 `cdcb8d3a4aeb8389980398dff84a93e7941a57c2`。请通过下方固定链接下载并核对 SHA-256。
+当前 Android SDK `1.2.0` 于 2026-11-17 发布，从源码标签 `v1.2.0` 对应提交 `1bcfd611e673b42a65419dcbb8c0589999fa3f55` 构建，固定发布提交为 `86d1cf20279209b0feb0e120434870e60a33c367`。请通过下方固定链接下载并核对 SHA-256。
 
 有关方法签名、参数、回调和调用示例，请参阅 [Android API 参考](../docs/android-api.md)。
 
-本次新增：
+`1.2.0` 在 Socket.IO、普通 HTTP 和 SSE 会话的 HTTP 发送请求中携带 `sdk_platform` 和宿主包名 `host_app`。发送重试沿用原消息 ID，宿主继续使用现有发送接口。
+
+`1.1.0` 的视频保存功能，见 [历史 AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/android/sdk/salesmartly-chatwidget-sdk-v1.1.0.aar)。
 
 - 普通视频、视频图文和模板视频统一在视频预览页提供“保存到相册”。显示保存中状态并禁止重复点击，只有系统相册写入完成才显示成功；下载或写入失败、权限拒绝分别提示。
 - Android 6–9（API 23–28）在点击保存时申请写入权限，写入公共 `Movies/SaleSmartly` 并等待媒体扫描；Android 10（API 29）及以上通过 MediaStore 写入同一目录，无需读取图库权限。权限说明见第 8 节。
@@ -41,7 +43,7 @@
 
 此前 `1.0.3` 的首页渠道显示修复继续保留：当渠道配置为聊天窗内展示（`integration_type == "chat"`）时，首页其他渠道入口不再因侧边栏或单图标配置被隐藏，主渠道、渠道排序及入口点击方式保持原有逻辑。
 
-当前公开 Demo APK 仍是使用 SDK `1.0.3` 构建的原 debug 包，包含 Coil 依赖；应用版本为 `1.0.0`（`versionCode` 为 `1`）。下方下载链接和校验值保留不变。Demo 源码已改用 SDK `1.1.0` 并构建通过；运行新版 Demo 请按第 9 节从源码构建，验证宿主附件 API 需自行接入 `sendAttachment`。
+当前公开 Demo APK 仍是使用 SDK `1.0.3` 构建的原 debug 包，包含 Coil 依赖；应用版本为 `1.0.0`（`versionCode` 为 `1`）。下方下载链接和校验值保留不变。Demo 源码已改用 SDK `1.2.0` 并构建通过；运行新版 Demo 请按第 9 节从源码构建，验证宿主附件 API 需自行接入 `sendAttachment`。
 
 ## Demo APK 下载
 
@@ -66,26 +68,26 @@ Android 设备下载后如提示禁止安装未知来源应用，请在系统设
 
 ## SDK AAR 下载
 
-[点击下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/android/sdk/salesmartly-chatwidget-sdk-v1.1.0.aar)
+[点击下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/86d1cf20279209b0feb0e120434870e60a33c367/android/sdk/salesmartly-chatwidget-sdk-v1.2.0.aar)
 
 AAR 信息：
 
 | 字段 | 值 |
 | --- | --- |
-| 文件 | `android/sdk/salesmartly-chatwidget-sdk-v1.1.0.aar` |
-| Maven 坐标 | `com.salesmartly:chatwidget-sdk:1.1.0` |
+| 文件 | `android/sdk/salesmartly-chatwidget-sdk-v1.2.0.aar` |
+| Maven 坐标 | `com.salesmartly:chatwidget-sdk:1.2.0` |
 | minSdk | `23` |
 | 构建类型 | `release` |
-| 文件大小 | `1808140` bytes |
-| SHA-256 | `95867728526d8995662c0610dbd8a00be8424df23572891ad63a226a116d488c` |
+| 文件大小 | `1809351` bytes |
+| SHA-256 | `e7245f3e8632d4dd431cb3b7deade386a1ee340c709808f6d5e2bdffc3880cce` |
 
-本次已通过 668 项 JVM 单测、9 项 Android 16（API 36）模拟器视频保存服务与 UI 测试、正式 SDK / 示例 Release、R8、临时 Maven 元数据及分发 Demo debug 构建。模拟器测试覆盖远端与本地视频真实写入相册并解码、HTTP 失败、无效视频、下载取消、三类视频入口、保存中禁用重复点击、成功与失败提示；AAR 内置版本、新增实现、权限声明、21 种语言资源、结构及 SHA-256 已核验。
+本次通过 669 项 JVM 单测、SDK 与示例 Release/R8、分发 Demo Debug 构建。已核验 AAR 内置版本、发送来源字段、文件完整性和 SHA-256，并确认分发 Demo APK 使用 SDK `1.2.0`。SaleSmartly App `5.3.5+549` 的 35 项 Android 桥接测试和 `prod` Debug APK 构建通过。
 
-本次未执行物理真机、Android 6–9 相册运行、分发 Demo UI 或线上真实客服会话验证；旧系统权限分支已通过 JVM 单测。
+本次的宿主验证限于构建和包内检查，真机和生产客服会话尚未验证。
 
-## 升级到 1.1.0
+## 升级到 1.2.0
 
-1. 下载上方 SDK AAR，替换宿主 App 使用的旧版 AAR，并将 Gradle 的 `implementation(files(...))` 引用更新为 `salesmartly-chatwidget-sdk-v1.1.0.aar`。
+1. 下载上方 SDK AAR，替换宿主 App 使用的旧版 AAR，并将 Gradle 的 `implementation(files(...))` 引用更新为 `salesmartly-chatwidget-sdk-v1.2.0.aar`。
 2. 保持现有 SDK 初始化、打开聊天及回调代码，并为手动 AAR 接入补充 `io.coil-kt.coil3:coil-compose-core:3.4.0` 与 `io.coil-kt.coil3:coil-network-okhttp:3.4.0`；完整依赖示例见下方。
 3. 核对第 8 节的旧系统写入权限合并结果。重新构建 App，验证视频保存、权限拒绝、附件发送、断网恢复、前后台切换及原有聊天功能，再发布 App 更新。继续引用旧版 AAR 的项目不会自动获得本次功能。
 
@@ -93,11 +95,11 @@ AAR 信息：
 
 ## 1. 添加 SDK 依赖
 
-当前发布仓库直接提供 AAR。宿主 App 的 `compileSdk` 需为 `36` 或更高，最低运行系统仍为 minSdk `23`。下载上方 `salesmartly-chatwidget-sdk-v1.1.0.aar`，放入宿主 App 的 `libs` 目录：
+当前发布仓库直接提供 AAR。宿主 App 的 `compileSdk` 需为 `36` 或更高，最低运行系统仍为 minSdk `23`。下载上方 `salesmartly-chatwidget-sdk-v1.2.0.aar`，放入宿主 App 的 `libs` 目录：
 
 ```kotlin
 dependencies {
-    implementation(files("libs/salesmartly-chatwidget-sdk-v1.1.0.aar"))
+    implementation(files("libs/salesmartly-chatwidget-sdk-v1.2.0.aar"))
 }
 ```
 
@@ -142,11 +144,11 @@ android {
 }
 ```
 
-SDK 工程已声明 Maven 坐标 `com.salesmartly:chatwidget-sdk:1.1.0`。只有该坐标发布到宿主 App 已配置的 Maven 仓库后，才可以改用以下依赖；当前发布仓库不表示该坐标已经公开发布：
+SDK 工程已声明 Maven 坐标 `com.salesmartly:chatwidget-sdk:1.2.0`。只有该坐标发布到宿主 App 已配置的 Maven 仓库后，才可以改用以下依赖；当前发布仓库不表示该坐标已经公开发布：
 
 ```kotlin
 dependencies {
-    implementation("com.salesmartly:chatwidget-sdk:1.1.0")
+    implementation("com.salesmartly:chatwidget-sdk:1.2.0")
 }
 ```
 
@@ -406,7 +408,7 @@ Android 10（API 29）及以上仅通过 MediaStore 写入本应用新建的视�
 ## 9. 运行 Demo 源码
 
 `android/demo/demo-source` 会直接依赖同一仓库中的
-`android/sdk/salesmartly-chatwidget-sdk-v1.1.0.aar`。在 `android/demo/demo-source/local.properties` 中配置
+`android/sdk/salesmartly-chatwidget-sdk-v1.2.0.aar`。在 `android/demo/demo-source/local.properties` 中配置
 Android SDK 路径和项目脚本地址：
 
 ```properties
