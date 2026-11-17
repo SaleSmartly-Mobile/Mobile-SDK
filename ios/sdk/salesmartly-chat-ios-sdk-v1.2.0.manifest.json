@@ -1,0 +1,21 @@
+{
+  "sdk_version": "1.2.0",
+  "source_branch": "codex-ios-send-origin-release-1-2-0",
+  "source_commit": "5046f00b1e3818c9ebb913a8f7aa21e6ddeee762",
+  "source_state": "clean",
+  "artifact": "salesmartly-chat-ios-sdk-v1.2.0.zip",
+  "size_bytes": 18879289,
+  "sha256": "490ee46e0214298b4bc79f8c742b7392bdb4365994ffe09e0185f464c17f63db",
+  "verification": {
+    "device_release_build": true,
+    "simulator_release_build": true,
+    "architectures": [
+      "ios-arm64",
+      "ios-simulator-arm64",
+      "ios-simulator-x86_64"
+    ],
+    "dsym_uuid_matches": true,
+    "resources_match": true,
+    "consumer_typecheck": true
+  }
+}

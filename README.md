@@ -6,23 +6,30 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## Android
 
-- 当前版本：SDK `1.1.0`（2026-11-16），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.1.0`
+- 当前版本：SDK `1.2.0`（2026-11-17），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.2.0`
 - [Android 接入说明](android/README.md)
 - [Android API 参考](docs/android-api.md)
 - [下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
-- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/android/sdk/salesmartly-chatwidget-sdk-v1.1.0.aar)
+- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/86d1cf20279209b0feb0e120434870e60a33c367/android/sdk/salesmartly-chatwidget-sdk-v1.2.0.aar)
 - [查看 Android Demo 源码](android/demo/demo-source)
 
 ## iOS
 
-- 当前版本：`1.1.0`（2026-11-16，iOS 15.0+）；Demo 源码已更新到 SDK `1.1.0`
+- 当前版本：`1.2.0`（2026-11-17，iOS 15.0+）；Demo 源码已更新到 SDK `1.2.0`
 - SDK 不提供默认聊天入口或 Launcher；宿主需使用自定义按钮调用 `SalesmartlyChat.openChat()` 打开聊天
 - [iOS 接入说明](ios/README.md)
 - [CocoaPods 安装](ios/README.md#cocoapods)
 - [iOS API 参考](docs/ios-api.md)
 - SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/ios/sdk/salesmartly-chat-ios-sdk-v1.1.0.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/86d1cf20279209b0feb0e120434870e60a33c367/ios/sdk/salesmartly-chat-ios-sdk-v1.2.0.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
+
+## 2026-11-17 更新
+
+- Android、iOS SDK `1.2.0` 在 Socket.IO、普通 HTTP 和 SSE 会话的 HTTP 发送请求中携带 `sdk_platform` 和 `host_app`，供后台按平台和宿主归属统计发送量。接入方继续使用现有的发送接口。
+- Android 669 项 SDK 单测、SDK 与示例 Release/R8、分发 Demo Debug 构建通过。iOS 16 项定向测试、设备与模拟器 Release、三架构消费检查、SwiftPM 解析和分发 Demo 构建通过。
+- SaleSmartly App `5.3.5+549` 的 Android 桥接与 APK、iOS arm64 模拟器宿主已验证实际嵌入 `1.2.0`。
+- 两端包固定到提交 `86d1cf20279209b0feb0e120434870e60a33c367`。源码提交、大小及 SHA-256 见各端接入说明。公开 Android Demo APK 仍使用 SDK `1.0.3`，两端 Demo 源码使用 `1.2.0`。
 
 ## 2026-11-16 更新
 
