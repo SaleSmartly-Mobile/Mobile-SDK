@@ -6,7 +6,7 @@
 
 有关方法签名、参数、回调和调用示例，请参阅 [Android API 参考](../docs/android-api.md)。
 
-`1.2.0` 在 Socket.IO、普通 HTTP 和 SSE 会话的 HTTP 发送请求中携带 `sdk_platform` 和宿主包名 `host_app`。发送重试沿用原消息 ID，宿主继续使用现有发送接口。
+`1.2.0` 在 Socket.IO、普通 HTTP 和 SSE 会话的 HTTP 发送请求中携带 `sdk_platform` 和宿主包名 `host_app`。宿主继续使用现有发送接口。
 
 `1.1.0` 的视频保存功能，见 [历史 AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/android/sdk/salesmartly-chatwidget-sdk-v1.1.0.aar)。
 
