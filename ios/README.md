@@ -4,13 +4,13 @@
 
 有关方法签名、参数、回调和调用示例，请参阅 [iOS API 参考](../docs/ios-api.md)。
 
-## 最新版本
+## 1.1.x 维护发布
 
-当前版本为 `1.2.0`，于 2026-11-17 发布，从源码标签 `v1.2.0` 对应提交 `5046f00b1e3818c9ebb913a8f7aa21e6ddeee762` 构建，固定发布提交为 `86d1cf20279209b0feb0e120434870e60a33c367`。
+当前版本为 `1.1.1`，于 2026-11-19 发布，从源码标签 `v1.1.1` 对应提交 `77caa78466cd55c7b623811203c52a38d27c440c` 构建，固定发布提交为 `130179239110d014a5e446acffdcc051efa56f52`。
 
-请通过下方固定提交链接下载 `1.2.0` 并核对 SHA-256；已有固定提交链接、旧包和旧标签保持不变，旧包不会自动获得本次功能。
+请通过下方固定提交链接下载 `1.1.1` 并核对 SHA-256。
 
-`1.2.0` 在 Socket.IO、普通 HTTP 和 SSE 会话的 HTTP 发送请求中携带 `sdk_platform` 和宿主 Bundle ID `host_app`。发送请求签名和附件重试已通过定向验证，宿主继续使用现有发送接口。
+`1.1.1` 修复聊前留资和促销卡对邮箱用户名中连续连字符的误判。发送载荷沿用 `1.1.x`，不再自动附加 `sdk_platform` 和宿主 Bundle ID `host_app`。已使用 `1.2.0` 的接入方如需保留这些字段，可继续使用 [1.2.0 固定 ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/86d1cf20279209b0feb0e120434870e60a33c367/ios/sdk/salesmartly-chat-ios-sdk-v1.2.0.zip) 和 [1.2.0 固定 podspec](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/eed26d3624451b00c66088cfaf3aa325fb5ba56b/ios/sdk/SalesmartlyChat-1.2.0.podspec)。
 
 `1.1.0` 的视频保存功能，见 [历史 ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/cdcb8d3a4aeb8389980398dff84a93e7941a57c2/ios/sdk/salesmartly-chat-ios-sdk-v1.1.0.zip) 和 [历史 podspec](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/c38ffacb0525a3a6afb18ae8939bd9b02d2bd470/ios/sdk/SalesmartlyChat-1.1.0.podspec)。
 
@@ -49,7 +49,7 @@
 
 2026-09-24 修订中的 Ogg/Opus 语音解码及长按文字消息后拖动选区、仅复制选中文字的能力继续保留。
 
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/86d1cf20279209b0feb0e120434870e60a33c367/ios/sdk/salesmartly-chat-ios-sdk-v1.2.0.zip)
+- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/130179239110d014a5e446acffdcc051efa56f52/ios/sdk/salesmartly-chat-ios-sdk-v1.1.1.zip)
 - [查看 Demo 源码](demo/demo-source)
 
 > **入口说明：** SDK 不提供默认外部入口、悬浮按钮或 Launcher。宿主必须自行实现聊天按钮，并在按钮点击事件中调用 `SalesmartlyChat.openChat()` 打开聊天。
@@ -64,22 +64,22 @@
 
 | 字段 | 值 |
 | --- | --- |
-| 文件 | `ios/sdk/salesmartly-chat-ios-sdk-v1.2.0.zip` |
-| 版本 | `1.2.0` |
+| 文件 | `ios/sdk/salesmartly-chat-ios-sdk-v1.1.1.zip` |
+| 版本 | `1.1.1` |
 | 类型 | `XCFramework`（动态 Framework） |
 | 真机架构 | `arm64` |
 | Simulator 架构 | `arm64`、`x86_64` |
 | 最低系统 | iOS 15.0 |
 | 构建类型 | Release |
 | 构建工具 | Xcode 27.1（27A9275）、Swift 6.4（swiftlang-6.4.0.34.1） |
-| 文件大小 | `18879289` bytes |
-| SHA-256 | `490ee46e0214298b4bc79f8c742b7392bdb4365994ffe09e0185f464c17f63db` |
+| 文件大小 | `18879141` bytes |
+| SHA-256 | `5f076f7313bef6db2363e401bbe5ced0da28b87739e4b985021350c9da51303b` |
 
 当前 ZIP 包延续 `1.0.2` 的分发方式，启用 `BUILD_LIBRARY_FOR_DISTRIBUTION=YES`，包含三个架构对应的 `.swiftinterface` 文本接口，保留 Xcode 27 模块导入修复。现有初始化和聊天入口 API 保持不变。
 
-本次通过 16 项与版本、三种发送通道、签名及附件重试相关的测试。设备 `arm64` 与模拟器 `arm64` / `x86_64` 的 Release 构建及三个架构的消费类型检查通过，dSYM UUID、资源和许可证已核验。
+本次通过 6 项版本、留资和促销卡定向测试。设备 `arm64` 与模拟器 `arm64` / `x86_64` 的 Release 构建及三个架构的消费类型检查通过，dSYM UUID、资源和许可证已核验。
 
-根 SwiftPM 解析及 iOS Demo 无签名模拟器构建通过，Demo 嵌入框架和资源与 ZIP 一致。SaleSmartly App `5.3.5+549` 的 arm64 模拟器宿主构建也已核实嵌入 `1.2.0`。本次验证范围为定向测试和构建，真机和生产客服会话尚未验证。
+根 SwiftPM 解析及 iOS Demo 的 arm64 模拟器构建通过。Demo 内置版本、arm64 UUID 和资源均与 ZIP 一致。本次验证覆盖定向测试和构建。
 
 ## 安装
 
@@ -87,7 +87,7 @@
 
 1. 在 Xcode 中选择 `File > Add Package Dependencies...`。
 2. 输入仓库地址 `https://github.com/SaleSmartly-Mobile/Mobile-SDK`。
-3. 选择 Commit 依赖规则并填写 `86d1cf20279209b0feb0e120434870e60a33c367`，将 `SalesmartlyChat` product 添加到 App Target。该固定提交引用 SDK `1.2.0`。
+3. 选择 Commit 依赖规则并填写 `130179239110d014a5e446acffdcc051efa56f52`，将 `SalesmartlyChat` product 添加到 App Target。该固定提交引用 SDK `1.1.1`。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
 
 也可以在宿主项目的 `Package.swift` 中声明：
@@ -95,7 +95,7 @@
 ```swift
 .package(
     url: "https://github.com/SaleSmartly-Mobile/Mobile-SDK.git",
-    revision: "86d1cf20279209b0feb0e120434870e60a33c367"
+    revision: "130179239110d014a5e446acffdcc051efa56f52"
 )
 ```
 
@@ -107,10 +107,10 @@
 
 ### CocoaPods
 
-在 `Podfile` 的 App target 中加入以下依赖，安装 iOS SDK 1.2.0：
+在 `Podfile` 的 App target 中加入以下依赖，安装 iOS SDK 1.1.1：
 
 ```ruby
-pod 'SalesmartlyChat', :podspec => 'https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/eed26d3624451b00c66088cfaf3aa325fb5ba56b/ios/sdk/SalesmartlyChat-1.2.0.podspec'
+pod 'SalesmartlyChat', :podspec => 'https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/e8a6113b9e2e48c1fb0799948b41510bdca5456a/ios/sdk/SalesmartlyChat-1.1.1.podspec'
 ```
 
 执行 `pod install`，用 Xcode 打开生成的 `.xcworkspace`，在 Swift 文件中添加 `import SalesmartlyChat`。SDK 最低支持 iOS 15.0。
@@ -119,7 +119,7 @@ pod 'SalesmartlyChat', :podspec => 'https://raw.githubusercontent.com/SaleSmartl
 
 ### 手动集成 ZIP
 
-1. 下载并解压 `salesmartly-chat-ios-sdk-v1.2.0.zip`。
+1. 下载并解压 `salesmartly-chat-ios-sdk-v1.1.1.zip`。
 2. 将 `SalesmartlyChat.xcframework` 拖入宿主工程，并勾选 App Target。
 3. 在 `Frameworks, Libraries, and Embedded Content` 中设置为 `Embed & Sign`。
 4. 在 Swift 文件中添加 `import SalesmartlyChat`。
@@ -135,9 +135,9 @@ pod 'SalesmartlyChat', :podspec => 'https://raw.githubusercontent.com/SaleSmartl
 
 用户点击视频预览页的保存按钮时，SDK 通过 Photos 请求 `.addOnly` 授权，仅新增视频，不读取已有照片或视频。本功能无需申请读取图库权限。缺少上述配置时会提示“当前应用未配置相册保存权限”；用户拒绝时会提示前往系统设置允许保存到相册，授权后可再次保存。
 
-## 从旧版本升级到 1.2.0
+## 接入 1.1.1
 
-- **SwiftPM：** 将依赖规则改为 Commit/revision `86d1cf20279209b0feb0e120434870e60a33c367`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次功能。
+- **SwiftPM：** 将依赖规则改为 Commit/revision `130179239110d014a5e446acffdcc051efa56f52`，重新解析依赖并确认 `Package.resolved` 记录该提交，再重新构建。仅刷新缓存或继续锁定旧提交不会获得本次功能。
 - **手动集成：** 使用本文新的固定提交下载链接，核对上方 SHA-256，解压并完整替换工程中的 `SalesmartlyChat.xcframework`，保持 `Embed & Sign`。不要复用本地旧 ZIP，也不要只替换内部可执行文件。
 - **CocoaPods：** 使用上方的官方 `:podspec` 地址后，执行 `pod update SalesmartlyChat --no-repo-update` 并提交更新后的锁文件。若继续使用自维护 Pod，由维护方更新完整 XCFramework 的下载地址及 SHA-256，再更新对应依赖。
 - 确认工程只引用一份 SDK。替换后执行 `Product > Clean Build Folder` 再构建；仅当仍加载旧包时，再重置包缓存或清理该工程的 DerivedData。
@@ -300,4 +300,4 @@ SalesmartlyChat.push("onReceiveMessage") { payload in
 
 [查看 Demo 源码](demo/demo-source)
 
-Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v1.2.0.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。Demo 的 `Info.plist` 已配置 `NSPhotoLibraryAddUsageDescription`。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
+Demo 工程通过 `../../sdk/salesmartly-chat-ios-sdk-v1.1.1.zip` 引入 SDK 二进制包，并使用宿主自定义的 `Open chat` 按钮调用 `SalesmartlyChat.openChat()`，可作为 SwiftPM 本地二进制集成和自定义入口参考。Demo 的 `Info.plist` 已配置 `NSPhotoLibraryAddUsageDescription`。运行 Demo 前请完整克隆本仓库，确保相对路径下的 ZIP 安装包存在。
