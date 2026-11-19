@@ -6,23 +6,30 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 
 ## Android
 
-- 当前版本：SDK `1.2.0`（2026-11-17），公开 Demo APK `1.0.0` 仍使用 SDK `1.0.3`（minSdk `23`）；Demo 源码已更新到 SDK `1.2.0`
+- 本次发布 SDK `1.1.1`（2026-11-19，minSdk `23`）。Demo 源码使用 `1.1.1`，公开 Demo APK `1.0.0` 使用 SDK `1.0.3`。
 - [Android 接入说明](android/README.md)
 - [Android API 参考](docs/android-api.md)
 - [下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
-- [下载 SDK AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/86d1cf20279209b0feb0e120434870e60a33c367/android/sdk/salesmartly-chatwidget-sdk-v1.2.0.aar)
+- [下载 SDK 1.1.1 AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/130179239110d014a5e446acffdcc051efa56f52/android/sdk/salesmartly-chatwidget-sdk-v1.1.1.aar)
 - [查看 Android Demo 源码](android/demo/demo-source)
 
 ## iOS
 
-- 当前版本：`1.2.0`（2026-11-17，iOS 15.0+）；Demo 源码已更新到 SDK `1.2.0`
+- 本次发布 SDK `1.1.1`（2026-11-19，iOS 15.0+）。Demo 源码使用 `1.1.1`。
 - SDK 不提供默认聊天入口或 Launcher；宿主需使用自定义按钮调用 `SalesmartlyChat.openChat()` 打开聊天
 - [iOS 接入说明](ios/README.md)
 - [CocoaPods 安装](ios/README.md#cocoapods)
 - [iOS API 参考](docs/ios-api.md)
 - SwiftPM 仓库地址：`https://github.com/SaleSmartly-Mobile/Mobile-SDK`
-- [下载 SDK ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/86d1cf20279209b0feb0e120434870e60a33c367/ios/sdk/salesmartly-chat-ios-sdk-v1.2.0.zip)
+- [下载 SDK 1.1.1 ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/130179239110d014a5e446acffdcc051efa56f52/ios/sdk/salesmartly-chat-ios-sdk-v1.1.1.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
+
+## 2026-11-19 · 1.1.x 维护更新
+
+- 修复 SS-434。Android 留资与 iOS 留资、促销卡支持邮箱用户名中连续出现的连字符。
+- `1.1.1` 基于 `1.1.x` 维护线。发送请求沿用该分支的载荷，不再自动附加 `sdk_platform` 和 `host_app`。需要继续使用 `1.2.0` 的接入方可保留已有固定依赖。
+- Android 669 项 JVM 单测、SDK 和示例 Release/R8、分发 Demo Debug 构建通过。iOS 6 项定向测试、设备及双架构模拟器 Release、三架构消费检查、SwiftPM 解析和分发 Demo 模拟器构建通过。
+- 两端产物固定在提交 `130179239110d014a5e446acffdcc051efa56f52`。源码提交、字节数及 SHA-256 见各端接入说明。
 
 ## 2026-11-17 更新
 
@@ -111,6 +118,8 @@ android/
     salesmartly-chatwidget-sdk-v1.0.6.aar
     salesmartly-chatwidget-sdk-v1.1.0.aar
     salesmartly-chatwidget-sdk-v1.1.0.manifest.json
+    salesmartly-chatwidget-sdk-v1.1.1.aar
+    salesmartly-chatwidget-sdk-v1.1.1.manifest.json
 ios/
   README.md
   demo/
@@ -133,4 +142,7 @@ ios/
     salesmartly-chat-ios-sdk-v1.1.0.zip
     salesmartly-chat-ios-sdk-v1.1.0.manifest.json
     SalesmartlyChat-1.1.0.podspec
+    salesmartly-chat-ios-sdk-v1.1.1.zip
+    salesmartly-chat-ios-sdk-v1.1.1.manifest.json
+    SalesmartlyChat-1.1.1.podspec
 ```
