@@ -1,0 +1,14 @@
+{
+  "sdk_version": "1.1.1",
+  "source_branch": "main",
+  "source_commit": "a985dfd04ef15e6b6c1a370ad7cfd6bdc98df8db",
+  "source_state": "clean",
+  "artifact": "salesmartly-chatwidget-sdk-v1.1.1.aar",
+  "size_bytes": 1808145,
+  "sha256": "f20fc257f4e4adb6b86464ab342ef8b2f2e37d3445892c0da6514aa2a6897ee0",
+  "verification": {
+    "unit_tests": 669,
+    "failures": 0,
+    "release_build": true
+  }
+}
