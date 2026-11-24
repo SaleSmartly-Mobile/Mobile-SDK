@@ -45,6 +45,15 @@
 
 当前公开 Demo APK 仍是使用 SDK `1.0.3` 构建的原 debug 包，包含 Coil 依赖；应用版本为 `1.0.0`（`versionCode` 为 `1`）。下方下载链接和校验值保留不变。Demo 源码已改用 SDK `1.1.1` 并构建通过；运行新版 Demo 请按第 9 节从源码构建，验证宿主附件 API 需自行接入 `sendAttachment`。
 
+## 1.2.0 发送成功日志修订
+
+1.2.0 发送成功日志修订于 2026-11-24 发布，覆盖 Socket.IO、普通 HTTP 和 SSE。源码标签为 `v1.2.0-send-log-r1`，从提交 `a8ac6d69b2ce072c0ea09bedfe5950f399b26b59` 构建。
+
+- [Android AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/347ccdf6d1bcdb07a9161f250d20340665bce318/android/sdk/salesmartly-chatwidget-sdk-v1.2.0-send-log-r1.aar) · [校验清单](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/347ccdf6d1bcdb07a9161f250d20340665bce318/android/sdk/salesmartly-chatwidget-sdk-v1.2.0-send-log-r1.manifest.json)
+- 文件大小 `1815268` 字节，SHA-256 `88598599caec837c2771fbf9c24c9b533ed1ef2212480dfd53cbe8fc29cbbe22`。
+
+将 AAR 放入宿主的 `libs` 目录并引用 `implementation(files("libs/salesmartly-chatwidget-sdk-v1.2.0-send-log-r1.aar"))`。
+
 ## Demo APK 下载
 
 [点击下载 Demo APK](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/8a57a19f19abe8ee72feb471004217c38ef4ba19/android/demo/salesmartly-chat-android-demo-v1.0.0.apk)
