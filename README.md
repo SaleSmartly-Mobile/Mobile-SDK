@@ -24,6 +24,15 @@ SaleSmartly 移动端 SDK 发布仓库，用于存放 Android / iOS SDK 发布�
 - [下载 SDK 1.1.1 ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/130179239110d014a5e446acffdcc051efa56f52/ios/sdk/salesmartly-chat-ios-sdk-v1.1.1.zip)
 - [查看 iOS Demo 源码](ios/demo/demo-source)
 
+## 2026-11-24 · 1.2.0 发送成功日志修订
+
+Android 和 iOS SDK 在 Socket.IO、普通 HTTP 和 SSE 发送获得业务成功确认后，通过现有客户端日志入口记录发送统计。同一发送的重复确认和重试不会重复上报。
+
+SDK 版本为 `1.2.0`，本次修订的源码标签为 `v1.2.0-send-log-r1`。产物固定在提交 `347ccdf6d1bcdb07a9161f250d20340665bce318`。
+
+- [Android AAR](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/347ccdf6d1bcdb07a9161f250d20340665bce318/android/sdk/salesmartly-chatwidget-sdk-v1.2.0-send-log-r1.aar) · [校验清单](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/347ccdf6d1bcdb07a9161f250d20340665bce318/android/sdk/salesmartly-chatwidget-sdk-v1.2.0-send-log-r1.manifest.json)
+- [iOS XCFramework ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/347ccdf6d1bcdb07a9161f250d20340665bce318/ios/sdk/salesmartly-chat-ios-sdk-v1.2.0-send-log-r1.zip) · [校验清单](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/347ccdf6d1bcdb07a9161f250d20340665bce318/ios/sdk/salesmartly-chat-ios-sdk-v1.2.0-send-log-r1.manifest.json) · [CocoaPods podspec](ios/sdk/SalesmartlyChat-1.2.0-send-log-r1.podspec)
+
 ## 2026-11-19 · 1.1.x 维护更新
 
 - 修复 SS-434。Android 留资与 iOS 留资、促销卡支持邮箱用户名中连续出现的连字符。

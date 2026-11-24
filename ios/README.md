@@ -60,6 +60,15 @@
 
 > 从 `0.1.1` 升级时，如此前依赖 `SalesmartlyChatHost` 自带 Launcher，需要改为宿主自行提供入口并调用 `SalesmartlyChat.openChat()`。
 
+## 1.2.0 发送成功日志修订
+
+1.2.0 发送成功日志修订于 2026-11-24 发布，覆盖 Socket.IO、普通 HTTP 和 SSE。源码标签为 `v1.2.0-send-log-r1`，从提交 `731bd89ba69ab1b46f66ced17e4fba8e43023def` 构建。
+
+- [iOS XCFramework ZIP](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/347ccdf6d1bcdb07a9161f250d20340665bce318/ios/sdk/salesmartly-chat-ios-sdk-v1.2.0-send-log-r1.zip) · [校验清单](https://raw.githubusercontent.com/SaleSmartly-Mobile/Mobile-SDK/347ccdf6d1bcdb07a9161f250d20340665bce318/ios/sdk/salesmartly-chat-ios-sdk-v1.2.0-send-log-r1.manifest.json)
+- 文件大小 `18917254` 字节，SHA-256 `5ce22d20bd5489825e85c1432d4dc27ef620af6b2e13ea5f3173322e24399166`。
+
+可下载 ZIP 或通过 [1.2.0 修订版 podspec](sdk/SalesmartlyChat-1.2.0-send-log-r1.podspec) 接入 CocoaPods。
+
 ## SDK 信息
 
 | 字段 | 值 |

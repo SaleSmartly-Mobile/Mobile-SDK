@@ -1,0 +1,14 @@
+{
+  "sdk_version": "1.2.0",
+  "source_branch": "codex-release-android-1-2-0",
+  "source_commit": "a8ac6d69b2ce072c0ea09bedfe5950f399b26b59",
+  "source_state": "clean",
+  "artifact": "salesmartly-chatwidget-sdk-v1.2.0-send-log-r1.aar",
+  "size_bytes": 1815268,
+  "sha256": "88598599caec837c2771fbf9c24c9b533ed1ef2212480dfd53cbe8fc29cbbe22",
+  "verification": {
+    "unit_tests": 679,
+    "failures": 0,
+    "release_build": true
+  }
+}
